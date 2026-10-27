@@ -1,0 +1,205 @@
+# ─────────────────────────────────────────────
+# Python
+# ─────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+MANIFEST
+
+# ─────────────────────────────────────────────
+# Virtual environments
+# ─────────────────────────────────────────────
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# ─────────────────────────────────────────────
+# Jupyter Notebook
+# ─────────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+**/.ipynb_checkpoints/
+profile_default/
+ipython_config.py
+
+# ─────────────────────────────────────────────
+# Machine learning model artifacts
+# (large binary files — stored outside Git or via DVC)
+# ─────────────────────────────────────────────
+models/**/*.joblib
+models/**/*.pkl
+models/**/*.pickle
+models/**/*.npy
+models/**/*.npz
+models/**/*.h5
+models/**/*.pt
+models/**/*.pth
+models/**/*.onnx
+
+# ─────────────────────────────────────────────
+# Data files
+# (raw and processed datasets — too large for Git)
+# ─────────────────────────────────────────────
+
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.hdf
+*.h5
+
+# ─────────────────────────────────────────────
+# Logs and output files
+# ─────────────────────────────────────────────
+logs/
+*.log
+*.out
+*.err
+log.txt
+
+# ─────────────────────────────────────────────
+# Reports / generated figures
+# (keep source .md files; ignore generated images)
+# ─────────────────────────────────────────────
+reports/figures/*.png
+reports/figures/*.jpg
+reports/figures/*.jpeg
+reports/figures/*.svg
+reports/figures/*.pdf
+reports/results/*.csv
+reports/results/*.json
+
+# ─────────────────────────────────────────────
+# Flask / web application
+# ─────────────────────────────────────────────
+instance/
+.webassets-cache
+flask_session/
+
+# ─────────────────────────────────────────────
+# IDE and editor files
+# ─────────────────────────────────────────────
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm / JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Spyder
+.spyderproject.cfg
+.spyproject/
+
+# Rope
+.ropeproject/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# ─────────────────────────────────────────────
+# OS generated files
+# ─────────────────────────────────────────────
+# macOS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# Linux
+*~
+
+# ─────────────────────────────────────────────
+# Testing and coverage
+# ─────────────────────────────────────────────
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+htmlcov/
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# ─────────────────────────────────────────────
+# Type checking
+# ─────────────────────────────────────────────
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pytype/
+
+# ─────────────────────────────────────────────
+# Documentation builds
+# ─────────────────────────────────────────────
+docs/_build/
+site/
+
+# ─────────────────────────────────────────────
+# Temporary and misc
+# ─────────────────────────────────────────────
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+.scratch/
+tmp/
+
+# ─────────────────────────────────────────────
+# ──  WHAT IS TRACKED (kept in Git)  ──────────
+#
+#   notebooks/**/*.ipynb       all Jupyter notebooks
+#   src/**/*.py                source modules
+#   reports/**/*.md            markdown reports
+#   requirements.txt           dependency list
+#   README.md                  project documentation
+#   .gitignore                 this file
+#   models/**/                 directory structure only
+#                              (artifacts themselves are excluded above)
+# ─────────────────────────────────────────────
+
+# Keep empty model subdirectories tracked via placeholder
+!models/.gitkeep
+!models/regression/.gitkeep
+!models/clustering/.gitkeep
+!models/recommendation/.gitkeep
+!models/hybrid/.gitkeep
+
+# Keep report markdown files even if their parent dirs are partially ignored
+!reports/figures/*.md
+!reports/results/*.md

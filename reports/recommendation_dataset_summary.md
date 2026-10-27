@@ -1,0 +1,1345 @@
+# Egyptian Real Estate Dataset Summary
+
+## Dataset Size
+
+- Rows: 62,977
+- Columns: 18
+
+## Dataset Columns
+
+- id
+- title
+- price
+- currency
+- price_period
+- price_type
+- price_raw_value
+- property_type
+- location
+- latitude
+- longitude
+- images
+- share_url
+- bedrooms
+- bathrooms
+- size
+- amenities
+- category
+
+---
+
+# property_type
+
+- Data Type: str
+- Missing Values: 0
+- Unique Values: 32
+
+## Unique Values
+
+- Apartment
+- Bulk Rent Unit
+- Bulk Sale Unit
+- Bungalow
+- Cabin
+- Cafeteria
+- Chalet
+- Clinic
+- Co-Working Space
+- Duplex
+- Factory
+- Farm
+- Full Floor
+- Half Floor
+- Hotel Apartment
+- Land
+- Medical Facility
+- Office Space
+- Palace
+- Penthouse
+- Restaurant
+- Retail
+- Roof
+- Shop
+- Show Room
+- Staff Accommodation
+- Townhouse
+- Twin House
+- Villa
+- Warehouse
+- Whole Building
+- iVilla
+
+## Top 30 Most Frequent Values
+
+- Apartment: 25086
+- Office Space: 14283
+- Villa: 5583
+- Shop: 3453
+- Chalet: 2192
+- Townhouse: 2109
+- Clinic: 1742
+- Duplex: 1567
+- Twin House: 1515
+- Penthouse: 1213
+- Retail: 966
+- Whole Building: 705
+- iVilla: 514
+- Full Floor: 270
+- Warehouse: 222
+- Factory: 209
+- Medical Facility: 198
+- Co-Working Space: 188
+- Land: 180
+- Restaurant: 176
+- Hotel Apartment: 162
+- Show Room: 120
+- Half Floor: 67
+- Roof: 60
+- Cafeteria: 43
+- Bulk Sale Unit: 40
+- Bulk Rent Unit: 34
+- Cabin: 30
+- Palace: 21
+- Farm: 20
+
+
+---
+
+# category
+
+- Data Type: str
+- Missing Values: 0
+- Unique Values: 4
+
+## Unique Values
+
+- buy
+- commercial_buy
+- commercial_rent
+- rent
+
+## Top 30 Most Frequent Values
+
+- rent: 19979
+- buy: 19965
+- commercial_rent: 14080
+- commercial_buy: 8953
+
+
+---
+
+# location
+
+- Data Type: str
+- Missing Values: 0
+- Unique Values: 2925
+
+## Unique Values
+
+Total Unique Values: 2925
+
+First 500 Unique Values:
+
+- 1-nintey, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- 10th District, 6 October City, Giza
+- 10th District, Sheikh Zayed City, Giza
+- 10th Sector, Zahraa El Maadi, Hay El Maadi, Cairo
+- 10th Zone, Nasr City, Cairo
+- 10th of Ramadan City, Sharqia
+- 11th District, 6 October City, Giza
+- 11th District, Sheikh Zayed City, Giza
+- 12th District, Sheikh Zayed City, Giza
+- 13th District, Sheikh Zayed City, Giza
+- 13th Sector, Zahraa El Maadi, Hay El Maadi, Cairo
+- 14th of May Bridge Road, Smouha, Hay Sharq, Alexandria
+- 14th of May Bridge, Smouha, Hay Sharq, Alexandria
+- 15 May City, Cairo
+- 16th District, Sheikh Zayed City, Giza
+- 1O1 Mall, Sheikh Zayed City, Giza
+- 1st Area, Shorouk City, Cairo
+- 1st Avenue North Side, Hurghada Resorts, Hurghada, Red Sea
+- 1st Avenue South side, Hurghada Resorts, Hurghada, Red Sea
+- 1st District East, Shorouk City, Cairo
+- 1st District, 6 October City, Giza
+- 1st District, Sheikh Zayed City, Giza
+- 1st Neighborhood, 1st Area, Shorouk City, Cairo
+- 1st Neighborhood, 3rd Area, Shorouk City, Cairo
+- 1st Neighborhood, 3rd District West, Shorouk City, Cairo
+- 1st Neighborhood, 8th District, Shorouk City, Cairo
+- 1st Neighborhood, 9th Area, Shorouk City, Cairo
+- 1st Settlement Post office St., The 1st Settlement, New Cairo City, Cairo
+- 1st Zone, Nasr City, Cairo
+- 2/2, Al Andalus District, New Cairo City, Cairo
+- 205, 26th of July Corridor, Sheikh Zayed City, Giza
+- 26 July Axis, 6th District, Sheikh Zayed City, Giza
+- 26 July St., El Zaher, Cairo
+- 26th July St., Zamalek, Cairo
+- 26th Of July Corridor, Mohandessin, Giza
+- 26th of July Corridor, 6 October City, Giza
+- 26th of July Corridor, Sheikh Zayed City, Giza
+- 2nd District East, Shorouk City, Cairo
+- 2nd District, 6 October City, Giza
+- 2nd District, Obour City, Qalyubia
+- 2nd District, Sheikh Zayed City, Giza
+- 2nd Neighborhood, 1st District East, Shorouk City, Cairo
+- 2nd Neighborhood, 4th Area, Shorouk City, Cairo
+- 2nd Sector, Zahraa El Maadi, Hay El Maadi, Cairo
+- 3 Sides Mall, El Shorouk Compounds, Shorouk City, Cairo
+- 31WEST, Cairo Alexandria Desert Road, 6 October City, Giza
+- 3rd District West, Shorouk City, Cairo
+- 3rd District, 6 October City, Giza
+- 3rd District, Obour City, Qalyubia
+- 3rd Neighborhood, 2nd Area, Shorouk City, Cairo
+- 3rd Neighborhood, 4th Area, Shorouk City, Cairo
+- 3rd Sector, Zahraa El Maadi, Hay El Maadi, Cairo
+- 41 Business District, Zahraa El Maadi, Hay El Maadi, Cairo
+- 4T1, Downtown Area, New Capital City, Cairo
+- 4T4, Downtown Area, New Capital City, Cairo
+- 4th District, 6 October City, Giza
+- 4th District, Obour City, Qalyubia
+- 4th District, Sheikh Zayed City, Giza
+- 4th Neighborhood, 1st Area, Shorouk City, Cairo
+- 4th Neighborhood, 4th Area, Shorouk City, Cairo
+- 4th Neighborhood, 4th District West, Shorouk City, Cairo
+- 4th Neighborhood, 5th Area, Shorouk City, Cairo
+- 50th Street, Zahraa El Maadi, Hay El Maadi, Cairo
+- 5A by The Waterway, Ring Road, The 5th Settlement, New Cairo City, Cairo
+- 5th Area, Shorouk City, Cairo
+- 5th District, 6 October City, Giza
+- 5th District, Obour City, Qalyubia
+- 5th District, Sheikh Zayed City, Giza
+- 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- 6 October City, Giza
+- 6 October Compounds, 6 October City, Giza
+- 6 October- Wadi El Natroun Road, 6 October City, Giza
+- 6ixty Heliopolis, Heliopolis - Masr El Gedida, Cairo
+- 6ixty Three, Financial District, New Capital City, Cairo
+- 6ixty iconic tower, Financial District, New Capital City, Cairo
+- 6th District, Badr City, Cairo
+- 6th District, Obour City, Qalyubia
+- 6th Sector, Zahraa El Maadi, Hay El Maadi, Cairo
+- 6th Zone, Nasr City, Cairo
+- 79 Axis, District 3, The 5th Settlement, New Cairo City, Cairo
+- 7th District, 6 October City, Giza
+- 7th District, Nasr City, Cairo
+- 7th District, Sheikh Zayed City, Giza
+- 7th Neighborhood, 9th Area, Shorouk City, Cairo
+- 7th Sector, Zahraa El Maadi, Hay El Maadi, Cairo
+- 8th District, 6 October City, Giza
+- 8th District, Obour City, Qalyubia
+- 8th District, Sheikh Zayed City, Giza
+- 90 Avenue, South Investors Area, New Cairo City, Cairo
+- 90 Street, The 5th Settlement, New Cairo City, Cairo
+- 9inth Hub Mall, 1st District, 6 October City, Giza
+- 9th District, 6 October City, Giza
+- 9th District, Obour City, Qalyubia
+- 9th District, Sheikh Zayed City, Giza
+- 9th Zone, Nasr City, Cairo
+- ARC of Soma, Soma Bay, Safaga, Hurghada, Red Sea
+- Abaza St., El Mahkama Square, Heliopolis - Masr El Gedida, Cairo
+- Abbas Al Akkad St., 1st Zone, Nasr City, Cairo
+- Abbas El Akkad Street, 2nd District, Tanta, Al Gharbeya
+- Abd Al Aziz Aal Seoud St., El Manial, Hay El Manial, Cairo
+- Abd Al Aziz Ahmed St., Sidi Beshr, Hay Awal El Montazah, Alexandria
+- Abd Al Aziz Essa St., 10th Zone, Nasr City, Cairo
+- Abd Al Aziz Fahmy St., Heliopolis Square, El Nozha, Cairo
+- Abd Al Fattah El Taweel St., Fleming, Hay Sharq, Alexandria
+- Abd Al Hadi Al Gazzar   Zina St., Sidi Beshr, Hay Awal El Montazah, Alexandria
+- Abd Al Hameed El Deeb St., Tharwat, Hay Sharq, Alexandria
+- Abd Al Hameed Lotfy St., Mohandessin, Giza
+- Abd Al Hameed Soliman St., Al Agouza, Giza
+- Abd Al Hamid Awad St., 6th Zone, Nasr City, Cairo
+- Abd Al Hamid Badawy St., El Hegaz Square, El Nozha, Cairo
+- Abd Al Kawy Ahmed Basha St., Almazah, Heliopolis - Masr El Gedida, Cairo
+- Abd Al Khalek Tharwat St., Laurent, Hay Sharq, Alexandria
+- Abd Al Maksoud St., Smouha, Hay Sharq, Alexandria
+- Abd Al Moneim Hafez St., Almazah, Heliopolis - Masr El Gedida, Cairo
+- Abd Al Moneim Riad St., Al Motamayez District, 6 October City, Giza
+- Abd Al Moneim Sanad St., Ibrahimia, Hay Wasat, Alexandria
+- Abd Al Monsef Ghazi St., Saba Basha, Hay Sharq, Alexandria
+- Abd Al Rahman El Rafie St., Section 12, 1st District, Obour City, Qalyubia
+- Abd Al Rahman El Rafie St., Section 6, 1st District, Obour City, Qalyubia
+- Abd Al Salam Farid St., Almazah, Heliopolis - Masr El Gedida, Cairo
+- Abd El Aziz Fahmy St., Triumph Square, El Nozha, Cairo
+- Abd El Aziz Ismail St., Triumph Square, El Nozha, Cairo
+- Abdallah Abou El Seoud St., Heliopolis Square, El Nozha, Cairo
+- Abdallah Ben Omar St., Rehab City Second Phase, Al Rehab, New Cairo City, Cairo
+- Abdallah Ibn Al Taher St., 6th Zone, Nasr City, Cairo
+- Abdallah Mahmoud St., Al Motamayez District, 6 October City, Giza
+- Abdel Aziz Gawish St., Meet Okba, Giza
+- Abdel Aziz Qerry St. ( Fawakeh ), Mohandessin, Giza
+- Abdel Baset Abdel Samad St., The 1st Settlement, New Cairo City, Cairo
+- Abdel Galeel Saad St., Laurent, Hay Sharq, Alexandria
+- Abdel Halim Hafez St., El Banafseg 8, El Banafseg, New Cairo City, Cairo
+- Abdel Halim Mahmoud St., El Mandara, Hay Than El Montazah, Alexandria
+- Abdel Hameed Gouda Al Sahar St., El Banafseg 5, El Banafseg, New Cairo City, Cairo
+- Abdel Hamid Badawi St., El Nozha El Gadida, El Nozha, Cairo
+- Abdel Hamid Badawy St., Sheraton Al Matar, El Nozha, Cairo
+- Abdel Hay Hegazy St., 8th Zone, Nasr City, Cairo
+- Abdel Moneim Al Dalel St., Tharwat, Hay Sharq, Alexandria
+- Abdel Moneim Riad St., Mohandessin, Giza
+- Abdel Razek Al Sanhouri St., 6th Zone, Nasr City, Cairo
+- Abdel Salam Aref St., Glim, Hay Sharq, Alexandria
+- Abdel Salam Aref St., Laurent, Hay Sharq, Alexandria
+- Abdel Salam Aref St., Saraya, Sidi Beshr, Hay Awal El Montazah, Alexandria
+- Abdel Salam Aref Street, Al Mansoura, Al Daqahlya
+- Abdelhakim Al Refaey St., 8th Zone, Nasr City, Cairo
+- Abdelhamid Al Abady St., Bolkly, Hay Sharq, Alexandria
+- Abdelhamid Al Abady St., Roushdy, Hay Sharq, Alexandria
+- Abdelhamid Gouda Al Sahar St., Zahraa El Maadi, Hay El Maadi, Cairo
+- Abdelrahman Roshdy St., Saint Fatima Square, El Nozha, Cairo
+- Abdullah Bin Omar St., Al Narges 6, Al Narges, New Cairo City, Cairo
+- Abdullah Deraz St., Ard El Golf, Heliopolis - Masr El Gedida, Cairo
+- Abdullah Ibn Rawaha St., El Hegaz Square, El Nozha, Cairo
+- Abdullah Ibn Salamah St., North Investors Area, New Cairo City, Cairo
+- Abha, 6 October Compounds, 6 October City, Giza
+- Abis El Asherah, Hay Wasat, Alexandria
+- Abo Mousa Al Ashaari St., The 1st Settlement, New Cairo City, Cairo
+- Abo Qir St., Cleopatra, Hay Sharq, Alexandria
+- Abo Qir St., Glim, Hay Sharq, Alexandria
+- Abo Qir St., Ibrahimia, Hay Wasat, Alexandria
+- Abo Qir St., Sporting, Hay Sharq, Alexandria
+- Abou Al Feda St., Zamalek, Cairo
+- Abou Al Karamat St., Al Agouza, Giza
+- Abou Bakr Al Sedeek St., Almazah, Heliopolis - Masr El Gedida, Cairo
+- Abou Bakr Al Sedeek St., El Mahkama Square, Heliopolis - Masr El Gedida, Cairo
+- Abou Bakr Al Sedeek St., El Ordoneya District, 10th of Ramadan City, Sharqia
+- Abou Bakr Al Sedeek St., Rehab City Second Phase, Al Rehab, New Cairo City, Cairo
+- Abou Dawoud Al Zahery St., 6th Zone, Nasr City, Cairo
+- Abou El Houl, New Cairo City, Cairo
+- Abou Hanifa Al Noaman St., Rehab City First Phase, Al Rehab, New Cairo City, Cairo
+- Abou Quer Road   Gamal Abdel Nasser Road, Janaklees, Hay Sharq, Alexandria
+- Abou Quer Road, Roushdy, Hay Sharq, Alexandria
+- Abou Quer Road, Zezenia, Hay Sharq, Alexandria
+- Abou Rafea St., Kafr Abdo, Roushdy, Hay Sharq, Alexandria
+- Abou Rawash St., Al Matar, Imbaba, Giza
+- Abou Rawash, Cairo
+- Abou Rawash, Warraq Al Arab, Al Warraq, Giza
+- Abou al mahasen al shazli St., Al Agouza, Giza
+- Abu Tig Marina, El Gouna, Hurghada, Red Sea
+- Acacia, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- Acasa Mia, New Cairo City, Cairo
+- Acasa, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- Actio Mall, District 3, The 5th Settlement, New Cairo City, Cairo
+- Ademon Fremon St., Smouha, Hay Sharq, Alexandria
+- Adn St., Mohandessin, Giza
+- Aeon, 6 October Compounds, 6 October City, Giza
+- Africa   Emtedad Moustafa Al Nahas, 9th Zone, Nasr City, Cairo
+- Agora Commercial Complex, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- Agora Zayed, Al Shabab St., Sheikh Zayed City, Giza
+- Agora, Sidi Abdel Rahman, North Coast
+- Ahbab Al Rasoul St., Al Sefarat District, Nasr City, Cairo
+- Ahmed Abo Soliman St., Abou Soliman, Hay Sharq, Alexandria
+- Ahmed Abou Al Ela St., 8th Zone, Nasr City, Cairo
+- Ahmed Al Khashab St., 8th Zone, Nasr City, Cairo
+- Ahmed Al Zomor St., 10th District, Nasr City, Cairo
+- Ahmed Al Zomor St., 8th Zone, Nasr City, Cairo
+- Ahmed Al Zomor St., 9th Zone, Nasr City, Cairo
+- Ahmed Basha St., Garden City, Cairo
+- Ahmed Basha Turk St., Fleming, Hay Sharq, Alexandria
+- Ahmed Bin Hanbal St., Rehab City First Phase, Al Rehab, New Cairo City, Cairo
+- Ahmed Fakhry St., 6th Zone, Nasr City, Cairo
+- Ahmed Hassan Al Bakory St., Neighborhood 5, 10th of Ramadan City, Sharqia
+- Ahmed Hassan Al Zayyat St., Al Hadiqah Al Dawliyah, 7th District, Nasr City, Cairo
+- Ahmed Helmy St., El Sahel, Hay Shobra, Cairo
+- Ahmed Heshmat St., Zamalek, Cairo
+- Ahmed Kamel St., El Laselky, New Maadi, Hay El Maadi, Cairo
+- Ahmed Maher St., Al Mansoura, Al Daqahlya
+- Ahmed Mohammed Al Adham St., San Stefano, Hay Sharq, Alexandria
+- Ahmed Moharam St., The 1st Settlement, New Cairo City, Cairo
+- Ahmed Orabi St., El Mansheya, Hay El Gomrok, Alexandria
+- Ahmed Orabi St., Mohandessin, Giza
+- Ahmed Qasim Gewida St., 1st Zone, Nasr City, Cairo
+- Ahmed Ragheb St., Garden City, Cairo
+- Ahmed Sabry St., Zamalek, Cairo
+- Ahmed Sedeek St., Sidi Gaber, Hay Sharq, Alexandria
+- Ahmed Shawky Axis, El Banafseg 1, El Banafseg, New Cairo City, Cairo
+- Ahmed Shawky St., Bolkly, Hay Sharq, Alexandria
+- Ahmed Shawky St., Mustafa Kamel, Hay Sharq, Alexandria
+- Ahmed Shawky St., Roushdy, Hay Sharq, Alexandria
+- Ahmed Tayseer St., Ard El Golf, Heliopolis - Masr El Gedida, Cairo
+- Ahmed Zewail Square, Waboor Elmayah, Hay Wasat, Alexandria
+- Ahmed Zou Al Fekar St., Laurent, Hay Sharq, Alexandria
+- AiAngle City Mall, New Narges, New Cairo City, Cairo
+- Akhnaton St., District 5, The 5th Settlement, New Cairo City, Cairo
+- Akoya, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- Al  Rabwa, Sheikh Zayed Compounds, Sheikh Zayed City, Giza
+- Al Aanab St., Mohandessin, Giza
+- Al Abbasiya Square, Abbasia, Cairo
+- Al Adel Abu Bakr St., Zamalek, Cairo
+- Al Aezaa St., Glim, Hay Sharq, Alexandria
+- Al Agami Road, Adh Dheraa Al Bahri ـ, Hay Al Amereyah, Alexandria
+- Al Agouza, Giza
+- Al Ahram St., Al Hadaba Al Olya, Mokattam, Cairo
+- Al Ahram St., Roxy, Heliopolis - Masr El Gedida, Cairo
+- Al Ahrar St., Dokki, Giza
+- Al Ahrar St., Mohandessin, Giza
+- Al Ahyaa District, Hurghada, Red Sea
+- Al Ain Al Sokhna, Suez
+- Al Akid Mostafa Mohamed Tawfik St., Ibrahimia, Hay Wasat, Alexandria
+- Al Alamein, North Coast
+- Al Amal St., District 5, The 5th Settlement, New Cairo City, Cairo
+- Al Amal St., Sheikh Zayed City, Giza
+- Al Amereyah Gharb, Hay Al Amereyah, Alexandria
+- Al Amn Al Aam Compound, The 1st Settlement, New Cairo City, Cairo
+- Al Andalous Residence, Sahl Hasheesh, Hurghada, Red Sea
+- Al Andalus Buildings, Al Andalus District, New Cairo City, Cairo
+- Al Andalus District, New Cairo City, Cairo
+- Al Andalus El Gedida, Al Andalus District, New Cairo City, Cairo
+- Al Andalus Family, Al Andalus District, New Cairo City, Cairo
+- Al Andalus St., Roxy, Heliopolis - Masr El Gedida, Cairo
+- Al Aqaba St., Cleopatra, Hay Sharq, Alexandria
+- Al Arabiya Gate, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- Al Arqam Ibn Abi Al Arqam St., El Mearag City, Zahraa El Maadi, Hay El Maadi, Cairo
+- Al Arwam Church St., Janaklees, Hay Sharq, Alexandria
+- Al Aseel, South Investors Area, New Cairo City, Cairo
+- Al Asher Mn Ramadan Badr Road, Zezenia 10th of Ramadan, 10th of Ramadan City, Sharqia
+- Al Ashgar St., Mohandessin, Giza
+- Al Ashlaa St., Al Gamea Square, Heliopolis - Masr El Gedida, Cairo
+- Al Ashrafiya, North Investors Area, New Cairo City, Cairo
+- Al Atarin Mosque St., El Mansheya, Hay El Gomrok, Alexandria
+- Al Aziz Othman St., Zamalek, Cairo
+- Al Badrashin, Giza
+- Al Bahr Al Aazam  St., Giza District, Ganoub El Giza, Giza
+- Al Baroon St., El Korba, Heliopolis - Masr El Gedida, Cairo
+- Al Bashayer District, 6 October City, Giza
+- Al Basrah St., Mohandessin, Giza
+- Al Batal Ahmed Abd El Aziz St., Mohandessin, Giza
+- Al Batal Mohamed Abdel Atti Atteya St., Al Narges 5, Al Narges, New Cairo City, Cairo
+- Al Bergas St., Garden City, Cairo
+- Al Bolbol St., Bolkly, Hay Sharq, Alexandria
+- Al Bostan St., 9th District, Sheikh Zayed City, Giza
+- Al Bostan, Al Wahat Road, 6 October City, Giza
+- Al Burouj Compound, El Shorouk Compounds, Shorouk City, Cairo
+- Al Dabour 537 St., El Asafra Bahary, Asafra, Hay Than El Montazah, Alexandria
+- Al Daraeb St., Seyouf, Hay Awal El Montazah, Alexandria
+- Al Dau Heights, Youssef Afifi Road, Hurghada, Red Sea
+- Al Dawly Al Gadid Road, El Kabbari, Hay Gharb, Alexandria
+- Al Delta St., Sporting, Hay Sharq, Alexandria
+- Al Diplomaseen, 2nd District, Sheikh Zayed City, Giza
+- Al Dir St., Sidi Gaber, Hay Sharq, Alexandria
+- Al Diyar, Al Narges, New Cairo City, Cairo
+- Al Dokki St., Al Agouza, Giza
+- Al Dokki St., Dokki, Giza
+- Al Ein Bay, Al Ain Al Sokhna, Suez
+- Al Ekbal St., Laurent, Hay Sharq, Alexandria
+- Al Ekbal St., Saraya, Sidi Beshr, Hay Awal El Montazah, Alexandria
+- Al Ekhshedy St., El Banafseg 7, El Banafseg, New Cairo City, Cairo
+- Al Esraa St., El Mearag City, Zahraa El Maadi, Hay El Maadi, Cairo
+- Al Esraa St., Mohandessin, Giza
+- Al Fadl Ibn Rabie St., 7th District, Nasr City, Cairo
+- Al Falah St., Mohandessin, Giza
+- Al Falki St., Abdeen, Cairo
+- Al Fardous St., Al Fardous City, Al Wahat Road, 6 October City, Giza
+- Al Farek Ismail Srhank St., Laurent, Hay Sharq, Alexandria
+- Al Fath St., Backus, Hay Sharq, Alexandria
+- Al Fath St., Fleming, Hay Sharq, Alexandria
+- Al Fath St., Janaklees, Hay Sharq, Alexandria
+- Al Fath St., San Stefano, Hay Sharq, Alexandria
+- Al Fath St., Smouha, Hay Sharq, Alexandria
+- Al Feda Gardens, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- Al Feda Gardens, Sheikh Zayed Compounds, Sheikh Zayed City, Giza
+- Al Forsan City, New Maadi, Hay El Maadi, Cairo
+- Al Fostat St., Cleopatra, Hay Sharq, Alexandria
+- Al Gabalaya St., Zamalek, Cairo
+- Al Gala'a Street, Al Mansoura, Al Daqahlya
+- Al Galaa Square, Dokki, Giza
+- Al Galaa St., Saraya, Sidi Beshr, Hay Awal El Montazah, Alexandria
+- Al Galaa St., Victoria, Hay Awal El Montazah, Alexandria
+- Al Gamaa District, Al Mansoura, Al Daqahlya
+- Al Gamaa St., 9th District, Obour City, Qalyubia
+- Al Gamea Square, Heliopolis - Masr El Gedida, Cairo
+- Al Gamil Fouad St., 8th Zone, Nasr City, Cairo
+- Al Gazaer Square, New Maadi, Hay El Maadi, Cairo
+- Al Gazaer St., Al Agouza, Giza
+- Al Gazaer St., New Maadi Extension, Hay El Maadi, Cairo
+- Al Geish Road, Azarita, Hay Wasat, Alexandria
+- Al Geish Road, Camp Chezar, Hay Wasat, Alexandria
+- Al Geish Road, Cleopatra, Hay Sharq, Alexandria
+- Al Geish Road, El Mandara, Hay Than El Montazah, Alexandria
+- Al Geish Road, El Mansheya, Hay El Gomrok, Alexandria
+- Al Geish Road, El Montazah, Hay Than El Montazah, Alexandria
+- Al Geish Road, Glim, Hay Sharq, Alexandria
+- Al Geish Road, Laurent, Hay Sharq, Alexandria
+- Al Geish Road, Raml Station, Hay Wasat, Alexandria
+- Al Geish Road, Saraya, Sidi Beshr, Hay Awal El Montazah, Alexandria
+- Al Gezira El Wosta St. (Yousef Kamel), Zamalek, Cairo
+- Al Gezira St., South Investors Area, New Cairo City, Cairo
+- Al Ghardaqah St., San Stefano, Hay Sharq, Alexandria
+- Al Giza  St., Giza District, Ganoub El Giza, Giza
+- Al Golf St., Maadi, Hay El Maadi, Cairo
+- Al Gomhoreya Square St., Abdeen, Cairo
+- Al Gomhoria Street, Al Mansoura, Al Daqahlya
+- Al Guezira Green Park, South Investors Area, New Cairo City, Cairo
+- Al Guezira plaza, 26th of July Corridor, Sheikh Zayed City, Giza
+- Al Gunday Al Maghool Square, El Mansheya, Hay El Gomrok, Alexandria
+- Al Hadaba Al Olya, Mokattam, Cairo
+- Al Hadaba Al Wosta, Mokattam, Cairo
+- Al Hallag St., Attarin, Hay Wasat, Alexandria
+- Al Hambra Waterfalls, Hurghada Resorts, Hurghada, Red Sea
+- Al Hanouvel St., Al Hanouvel, Hay Al Agami, Alexandria
+- Al Hanouvel, Hay Al Agami, Alexandria
+- Al Haram  St., Giza District, Ganoub El Giza, Giza
+- Al Haram St., Mashal, El Haram, Hay El Haram, Giza
+- Al Hay Al Thalith St., 3rd District, 6 October City, Giza
+- Al Hayah Residence, 3rd District West, Shorouk City, Cairo
+- Al Hedaya Mosque St., Saba Basha, Hay Sharq, Alexandria
+- Al Hedaya Mosque St., Salehia, Hay Sharq, Alexandria
+- Al Hegaz Road, Hurghada, Red Sea
+- Al Hegaz Square, El Hegaz Square, El Nozha, Cairo
+- Al Hegaz St., El Mahkama Square, Heliopolis - Masr El Gedida, Cairo
+- Al Hegaz St., Mohandessin, Giza
+- Al Hegaz St., Roxy, Heliopolis - Masr El Gedida, Cairo
+- Al Hejaz, Al Ain Al Sokhna, Suez
+- Al Hekma St., Sheikh Zayed City, Giza
+- Al Helmia Bridge, Al Amiriyah, Hay El Zaytoun, Cairo
+- Al Higaz Square, El Hegaz Square, El Nozha, Cairo
+- Al Hilton St., Smouha, Hay Sharq, Alexandria
+- Al Hoda Wa Al Nor Street, Al Mansoura, Al Daqahlya
+- Al Horeya St., Almazah, Heliopolis - Masr El Gedida, Cairo
+- Al Horreya Road, Saba Basha, Hay Sharq, Alexandria
+- Al Horreya St., New Maadi, Hay El Maadi, Cairo
+- Al Hosary, 6 October City, Giza
+- Al Hussein St., Dokki, Giza
+- Al Husseiny Lane, Ain Shams, Cairo
+- Al Imam El Shafei St., Rehab City Second Phase, Al Rehab, New Cairo City, Cairo
+- Al Imam Malik St., 6th District, Obour City, Qalyubia
+- Al Imam Zain Al Abdeen St., El Banafseg 9, El Banafseg, New Cairo City, Cairo
+- Al Imdad & Al Tamween St., Masaken Al Mohandesin, Nasr City, Cairo
+- Al Ismailia Road, Shorouk City, Cairo
+- Al Jaish Street, Al Mansoura, Al Daqahlya
+- Al Jawaher St., Hadara, Hay Wasat, Alexandria
+- Al Jazeera, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo
+- Al Jazi Mall, North Investors Area, New Cairo City, Cairo
+- Al Joman, 7th District, Sheikh Zayed City, Giza
+- Al Kadi Al Fadil St., Ibrahimia, Hay Wasat, Alexandria
+- Al Kady Hamza St., Ibrahimia, Hay Wasat, Alexandria
+- Al Kamel Mohamed St., Zamalek, Cairo
+- Al Karma 1, 4th District, Sheikh Zayed City, Giza
+- Al Karma 2, 5th District, Sheikh Zayed City, Giza
+- Al Karma 4, Sheikh Zayed Compounds, Sheikh Zayed City, Giza
+- Al Karma Gates, New Zayed City, Sheikh Zayed City, Giza
+- Al Kasr Al Ainy St., Garden City, Cairo
+- Al Katameya Plaza, The 1st Settlement, New Cairo City, Cairo
+- Al Khamayel city, Sheikh Zayed Compounds, Sheikh Zayed City, Giza
+- Al Khartoum Square, Azarita, Hay Wasat, Alexandria
+- Al Kholafaa El Rashedeen ( Al Teraa ) St., Al Mansoura, Al Daqahlya
+- Al Kornish Square, Sporting, Hay Sharq, Alexandria
+- Al Laselky St., El Laselky, New Maadi, Hay El Maadi, Cairo
+- Al Lebeny Axis, El Mariouteya, Faisal, Hay El Haram, Giza
+- Al Lewaa Abdel Tawab Hadeb St., Smouha, Hay Sharq, Alexandria
+- Al Maadi Company St., New Maadi, Hay El Maadi, Cairo
+- Al Maahad Al Eshteraky St., Roxy, Heliopolis - Masr El Gedida, Cairo
+- Al Maamoura, Hay Than El Montazah, Alexandria
+- Al Madina El Monawara St., 9th Zone, Nasr City, Cairo
+- Al Madina El Monawara St., El Basatin, Cairo
+- Al Madina St., New Maadi Extension, Hay El Maadi, Cairo
+- Al Mahkama St., Moharam Bek, Hay Wasat, Alexandria
+- Al Mahrouki St., Al Agouza, Giza
+- Al Mahrouki St., Ard El Golf, Heliopolis - Masr El Gedida, Cairo
+- Al Malek Al Saleh St., El Roda, Hay El Manial, Cairo
+- Al Malek El Fadl St., Zamalek, Cairo
+- Al Malek Faisal St., Awel Faisal, Faisal, Hay El Haram, Giza
+- Al Manial St., El Manial, Hay El Manial, Cairo
+- Al Mansour Mohamed St., Zamalek, Cairo
+- Al Mansoura, Al Daqahlya
+- Al Mansoureya, Hay El Haram, Giza
+- Al Manteqa Al Senaeya St., Abbasia, Cairo
+- Al Maqrizi St., Roxy, Heliopolis - Masr El Gedida, Cairo
+- Al Maqrizi St., Zamalek, Cairo
+- Al Maqsad, New Capital Compounds, New Capital City, Cairo
+- Al Mashayah Street, Al Mansoura, Al Daqahlya
+- Al Masyaf, Ras Al Hekma, North Coast
+- Al Matbaa St., Al Matbaa, Faisal, Hay El Haram, Giza
+- Al Matbaa St., El Talbia, El Haram, Hay El Haram, Giza
+- Al Megawra Al Sabaa St., 1st District, 6 October City, Giza
+- Al Mehwar Al Markazi   No. 1, Industrial Area, 6 October City, Giza
+- Al Mehwar Al Markazi, 1st District, 6 October City, Giza
+- Al Mehwar Al Markazi, 7th District, 6 October City, Giza
+- Al Menya City, Al Menya
+- Al Merghany Bridge, Almazah, Heliopolis - Masr El Gedida, Cairo
+- Al Merghany St., Ard El Golf, Heliopolis - Masr El Gedida, Cairo
+- Al Mesaha St., Dokki, Giza
+- Al Mesak St., Laurent, Hay Sharq, Alexandria
+- Al Methak St., 10th District, Nasr City, Cairo
+- Al Moaskar Al Romani St., Roushdy, Hay Sharq, Alexandria
+- Al Mofatesh St., Hadara, Hay Wasat, Alexandria
+- Al Mohandes Ahmed Kamal Hamdy St., 16th District, Sheikh Zayed City, Giza
+- Al Mohandes Al Kordy St., Maadi, Hay El Maadi, Cairo
+- Al Mohandes Ehab Ezzat St., 9th Zone, Nasr City, Cairo
+- Al Mohandes Galal St., Mohandessin, Giza
+- Al Mohandes Khaled Abdel Aziz St., El Banafseg 10, El Banafseg, New Cairo City, Cairo
+- Al Mokattam El Katameya Road, Al Hadaba Al Wosta, Mokattam, Cairo
+- Al Montaza St., El Hegaz Square, El Nozha, Cairo
+- Al Morsaleen St., Zamalek, Cairo
+- Al Mosheer Ahmed Ismail St, Sheraton Al Matar, El Nozha, Cairo
+- Al Mosheer Ahmed Ismail St.   El Obour Road, 7th District, Obour City, Qalyubia
+- Al Mosheer Ahmed Ismail St., Sidi Gaber, Hay Sharq, Alexandria
+- Al Mosheer Tantawy Axis, 10th District, Nasr City, Cairo
+- Al Moshir Tantawy Axis, Al Wafa Wa Al Amal, Nasr City, Cairo
+- Al Mostakbal Road, 10th of Ramadan City, Sharqia
+- Al Mostakbal St., 2nd District, Sheikh Zayed City, Giza
+- Al Mostakbal, 12th District, Sheikh Zayed City, Giza
+- Al Mostathmir El Saghir, 10th District, Sheikh Zayed City, Giza
+- Al Motamayez District, 6 October City, Giza
+- Al Moussals St., 10th District, Nasr City, Cairo
+- Al Mushir Abu Ghazaleh St., Golf City, Obour City, Qalyubia
+- Al Nabatat St., Garden City, Cairo
+- Al Nabatat St., West Somid, 6 October City, Giza
+- Al Nabawy El Mohandes St., El Mandara, Hay Than El Montazah, Alexandria
+- Al Naby Danyal St., Raml Station, Hay Wasat, Alexandria
+- Al Nada, Sheikh Zayed Compounds, Sheikh Zayed City, Giza
+- Al Nadi Al Ahly, Nasr City, Cairo
+- Al Nady St., Maadi, Hay El Maadi, Cairo
+- Al Nahda Square, Maadi, Hay El Maadi, Cairo
+- Al Nahda St., Maadi, Hay El Maadi, Cairo
+- Al Nakheel Square, National Project For Housing First Region, Hadayek October, 6 October City, Giza
+- Al Narges 1, Al Narges, New Cairo City, Cairo
+- Al Narges 2, Al Narges, New Cairo City, Cairo
+- Al Narges 3, Al Narges, New Cairo City, Cairo
+- Al Narges 4, Al Narges, New Cairo City, Cairo
+- Al Narges 6, Al Narges, New Cairo City, Cairo
+- Al Narges 7, Al Narges, New Cairo City, Cairo
+- Al Narges, New Cairo City, Cairo
+- Al Nasayem Village, 6 October Compounds, 6 October City, Giza
+- Al Nasayem Village, Al Motamayez District, 6 October City, Giza
+- Al Nasr Rd, Sheraton Al Matar, El Nozha, Cairo
+- Al Nasr Road, 1st Zone, Nasr City, Cairo
+- Al Nasr Road, 6th Zone, Nasr City, Cairo
+- Al Nasr Road, El Estad, Nasr City, Cairo
+- Al Nasr Road, Rabaa Al Adaweyah, Nasr City, Cairo
+- Al Nasr St., El Laselky, New Maadi, Hay El Maadi, Cairo
+- Al Nasr St., El Mansheya El Gedida, Hay Sharq, Alexandria
+- Al Nasr St., El Mansheya, Hay El Gomrok, Alexandria
+- Al Nasr St., Hurghada, Red Sea
+- Al Nasr St., Sheraton Al Matar, El Nozha, Cairo
+- Al Nasr St., Smouha, Hay Sharq, Alexandria
+- Al Nawadi St, Hadayek October, 6 October City, Giza
+- Al Nawady Area, Shorouk City, Cairo
+- Al Nazaha St., El Nozha El Gadida, El Nozha, Cairo
+- Al Nile  St., Giza District, Ganoub El Giza, Giza
+- Al Nozha Bridge, Almazah, Heliopolis - Masr El Gedida, Cairo
+- Al Nozha St., 15th District, Sheikh Zayed City, Giza
+- Al Nozha St., Almazah, Heliopolis - Masr El Gedida, Cairo
+- Al Nozha St., Ard El Golf, Heliopolis - Masr El Gedida, Cairo
+- Al Nubariyah, Al Behera
+- Al Obour Road, Obour Market, Obour City, Qalyubia
+- Al Ordonia Road, Neighborhood 7, 10th of Ramadan City, Sharqia
+- Al Orouba St., Almazah, Heliopolis - Masr El Gedida, Cairo
+- Al Orouba St., El Estad, Nasr City, Cairo
+- Al Orouba St., El Ismailia Square, Heliopolis - Masr El Gedida, Cairo
+- Al Orouba St., El Korba, Heliopolis - Masr El Gedida, Cairo
+- Al Orouba St., New Maadi, Hay El Maadi, Cairo
+- Al Orouba St., Sheraton Al Matar, El Nozha, Cairo
+- Al Patio 1, North Investors Area, New Cairo City, Cairo
+- Al Patio 2, North Investors Area, New Cairo City, Cairo
+- Al Patio 3, Ext North Inves Area, New Cairo City, Cairo
+- Al Patio 4, El Patio, El Shorouk Compounds, Shorouk City, Cairo
+- Al Patio 5 East, El Patio, El Shorouk Compounds, Shorouk City, Cairo
+- Al Patio 5, El Patio, El Shorouk Compounds, Shorouk City, Cairo
+- Al Patio Prime, El Patio, El Shorouk Compounds, Shorouk City, Cairo
+- Al Patio, Ring Road, 6 October City, Giza
+- Al Qedes St., Zezenia, Hay Sharq, Alexandria
+
+## Top 30 Most Frequent Values
+
+- Mivida, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 3178
+- Eastown, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 1741
+- Hyde Park, New Cairo City, Cairo: 1426
+- Cairo Festival City, North Investors Area, New Cairo City, Cairo: 1402
+- Lake View Residence, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 1311
+- Privado, Madinaty, Cairo: 1203
+- Villette, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 1158
+- Sarayat Al Maadi, Hay El Maadi, Cairo: 760
+- District 5, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 720
+- Mountain View iCity, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 671
+- El Rehab Extension, Al Rehab, New Cairo City, Cairo: 664
+- Moon Residences, Fifth Square, The 5th Settlement, New Cairo City, Cairo: 543
+- New Giza, Cairo Alexandria Desert Road, 6 October City, Giza: 526
+- Mountain View Hyde Park, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 518
+- O West, 6 October Compounds, 6 October City, Giza: 508
+- Palm Hills New Cairo, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 458
+- Park Side Residence, Zed Towers, Sheikh Zayed Compounds, Sheikh Zayed City, Giza: 456
+- El Patio Oro, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 396
+- Bank Center Street, South Teseen St., The 5th Settlement, New Cairo City, Cairo: 379
+- Westown, Sheikh Zayed Compounds, Sheikh Zayed City, Giza: 373
+- IL Monte Galala, Al Ain Al Sokhna, Suez: 364
+- Katameya Heights, El Katameya Compounds, El Katameya, New Cairo City, Cairo: 352
+- One Ninety Mall, South Teseen St., The 5th Settlement, New Cairo City, Cairo: 352
+- South Teseen St., The 5th Settlement, New Cairo City, Cairo: 322
+- The Polygon, Sheikh Zayed Compounds, Sheikh Zayed City, Giza: 301
+- Allegria, Sheikh Zayed Compounds, Sheikh Zayed City, Giza: 295
+- V90, North Teseen St., The 5th Settlement, New Cairo City, Cairo: 288
+- Casa, Sheikh Zayed Compounds, Sheikh Zayed City, Giza: 270
+- Swan Lake Residence, 5th Settlement Compounds, The 5th Settlement, New Cairo City, Cairo: 270
+- Katameya Dunes, El Katameya Compounds, El Katameya, New Cairo City, Cairo: 266
+
+
+---
+
+# latitude
+
+- Data Type: float64
+- Missing Values: 0
+- Unique Values: 2655
+
+## Statistics
+
+- count: 62977.0
+- mean: 29.956842569460125
+- std: 1.2482694123039062
+- min: 0.008395000360906001
+- 25%: 29.99988555908203
+- 50%: 30.024694442749023
+- 75%: 30.06147003173828
+- max: 31.571517944335938
+
+
+---
+
+# longitude
+
+- Data Type: float64
+- Missing Values: 0
+- Unique Values: 2659
+
+## Statistics
+
+- count: 62977.0
+- mean: 31.319965821600277
+- std: 0.7807067294643076
+- min: 25.47613525390625
+- 25%: 31.036521911621094
+- 50%: 31.4495906829834
+- 75%: 31.538991928100586
+- max: 34.63273620605469
+
+
+---
+
+# bedrooms
+
+- Data Type: float64
+- Missing Values: 10389
+- Unique Values: 7
+
+## Statistics
+
+- count: 52588.0
+- mean: 3.0106868487107326
+- std: 1.3432088637822837
+- min: 1.0
+- 25%: 2.0
+- 50%: 3.0
+- 75%: 4.0
+- max: 7.0
+
+
+---
+
+# bathrooms
+
+- Data Type: float64
+- Missing Values: 2756
+- Unique Values: 7
+
+## Statistics
+
+- count: 60221.0
+- mean: 2.5997077431460784
+- std: 1.3890409115190905
+- min: 1.0
+- 25%: 2.0
+- 50%: 2.0
+- 75%: 3.0
+- max: 7.0
+
+
+---
+
+# size
+
+- Data Type: float64
+- Missing Values: 0
+- Unique Values: 1157
+
+## Statistics
+
+- count: 62977.0
+- mean: 461.1487527192467
+- std: 14599.386018113546
+- min: 1.0
+- 25%: 106.0
+- 50%: 167.0
+- 75%: 257.0
+- max: 2520000.0
+
+
+---
+
+# price
+
+- Data Type: float64
+- Missing Values: 0
+- Unique Values: 8593
+
+## Statistics
+
+- count: 62977.0
+- mean: 10137122.18806866
+- std: 41062576.40473623
+- min: 1000.0
+- 25%: 70000.0
+- 50%: 485000.0
+- 75%: 9050000.0
+- max: 1000000000.0
+
+
+---
+
+# amenities
+
+- Data Type: str
+- Missing Values: 0
+- Unique Values: 18383
+
+## Unique Values
+
+Total Unique Values: 18383
+
+First 500 Unique Values:
+
+- ['AC', 'BA', 'BK', 'BL', 'LB', 'WC', 'SP', 'VW']
+- ['AC', 'BA', 'BK', 'BL', 'LB', 'WC']
+- ['AC', 'BA', 'BK', 'BL', 'WC']
+- ['AC', 'BA', 'BK', 'CP', 'MR', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'BK', 'CP', 'SP', 'SE', 'SS', 'SY', 'WC', 'CO']
+- ['AC', 'BA', 'BK', 'LB', 'BL', 'WC']
+- ['AC', 'BA', 'BK', 'LB', 'WC', 'BL']
+- ['AC', 'BA', 'BK', 'MR', 'PG', 'PP', 'ST', 'VW', 'SE', 'BL', 'LB']
+- ['AC', 'BA', 'BK', 'MR', 'PG', 'SE']
+- ['AC', 'BA', 'BK', 'MR', 'PG', 'VW', 'SS', 'WC', 'SY', 'CO']
+- ['AC', 'BA', 'BK', 'MR', 'SP', 'VW', 'SE', 'SY', 'SS', 'BL']
+- ['AC', 'BA', 'BK', 'MR', 'ST', 'SE', 'BL', 'LB']
+- ['AC', 'BA', 'BK', 'PG', 'SE', 'LB']
+- ['AC', 'BA', 'BK', 'PG', 'SE']
+- ['AC', 'BA', 'BK', 'PG', 'SP', 'SE', 'SS', 'SY', 'CO']
+- ['AC', 'BA', 'BK', 'PG', 'ST', 'SE', 'WC']
+- ['AC', 'BA', 'BK', 'SE', 'BL', 'LB']
+- ['AC', 'BA', 'BK', 'SE', 'SS', 'SY']
+- ['AC', 'BA', 'BK', 'SE']
+- ['AC', 'BA', 'BK', 'SP', 'SE', 'SS', 'SY']
+- ['AC', 'BA', 'BK', 'SP', 'SE', 'SY', 'SS', 'BL']
+- ['AC', 'BA', 'BK', 'SP', 'VW', 'BL']
+- ['AC', 'BA', 'BK', 'SP', 'VW', 'SE', 'SS', 'SY', 'BL']
+- ['AC', 'BA', 'BK', 'SS', 'SY', 'SE', 'SP', 'PG']
+- ['AC', 'BA', 'BK', 'ST', 'SE', 'BL', 'LB']
+- ['AC', 'BA', 'BK', 'ST', 'SE', 'BL']
+- ['AC', 'BA', 'BK']
+- ['AC', 'BA', 'BL', 'LB', 'SE', 'CP']
+- ['AC', 'BA', 'BL', 'LB']
+- ['AC', 'BA', 'BW', 'BK', 'CP', 'LB', 'BL', 'WC', 'SY', 'SS', 'SE']
+- ['AC', 'BA', 'BW', 'BK', 'CP', 'MR', 'PG', 'PP', 'SP', 'VW', 'ST', 'SE', 'SS', 'SY', 'WC', 'BL', 'CO', 'LB']
+- ['AC', 'BA', 'BW', 'BK', 'CP', 'MR', 'ST', 'VW', 'SP', 'SE', 'SY', 'SS', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'BW', 'BK', 'CP', 'PG', 'MR', 'SP', 'PP', 'VW', 'ST', 'LB', 'SS', 'WC', 'SY', 'SE', 'BL', 'CO']
+- ['AC', 'BA', 'BW', 'BK', 'CP', 'PG', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'BL', 'WC', 'CO', 'LB']
+- ['AC', 'BA', 'BW', 'BK', 'MR', 'SE', 'SS', 'SY', 'LB']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'LB', 'BL', 'WC', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'PG', 'PP', 'ST', 'SP', 'VW', 'SE', 'SS', 'SY', 'WC', 'CO', 'LB', 'BL']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'PG', 'PP', 'ST', 'SP', 'VW', 'SS', 'SE', 'SY', 'WC', 'LB', 'BL', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'PG', 'PP', 'WC', 'SY', 'SS', 'ST', 'SP', 'VW', 'SE', 'LB', 'BL', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'PG', 'SP', 'ST', 'SE', 'VW', 'WC', 'SS', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'SE', 'SY', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'SP', 'ST', 'SS', 'SE']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'MR', 'ST', 'SE', 'SS', 'SY', 'WC', 'LB']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'PG', 'MR', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'PG', 'PP', 'MR', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'BL', 'LB', 'CO', 'WC']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'PG', 'PP', 'MR', 'SP', 'ST', 'VW', 'SS', 'SE', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'PG', 'PP', 'SP', 'ST', 'SE', 'VW', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'PG', 'SE', 'SY', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'PG', 'SP', 'SE', 'SS', 'SY', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'PP', 'MR', 'PG', 'SP', 'VW', 'ST', 'SE', 'SS', 'SY', 'WC', 'LB', 'BL', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'SE', 'LB', 'BL', 'WC', 'SY', 'SS', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'SE', 'SS', 'SY']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'SE', 'SY', 'WC', 'BL', 'LB', 'CO', 'SS']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'SE']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'ST', 'PG', 'PP', 'SP', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'CO', 'LB']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'ST', 'SE']
+- ['AC', 'BA', 'BW', 'CP', 'BK', 'VW', 'SE']
+- ['AC', 'BA', 'BW', 'CP', 'MR', 'BK', 'PG', 'PP', 'SP', 'ST', 'SE', 'VW', 'SS', 'BL', 'WC', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'MR', 'BK', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'MR', 'PG', 'WC', 'SE']
+- ['AC', 'BA', 'BW', 'CP', 'MR', 'PG']
+- ['AC', 'BA', 'BW', 'CP', 'MR', 'SP', 'SE', 'SS', 'SY', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'MR', 'SP', 'VW', 'ST', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'CP', 'SP', 'ST', 'VW', 'SE', 'SY', 'LB', 'BL']
+- ['AC', 'BA', 'BW', 'CP', 'ST', 'SP', 'MR', 'BL', 'WC']
+- ['AC', 'BA', 'BW', 'CP', 'SY', 'SS', 'SE', 'VW', 'ST', 'SP', 'BK']
+- ['AC', 'BA', 'BW', 'CP', 'WC', 'BL', 'LB', 'CO', 'SE', 'VW', 'ST']
+- ['AC', 'BA', 'BW', 'MR', 'BK', 'PG', 'SE', 'VW']
+- ['AC', 'BA', 'BW', 'PG', 'CP', 'BK', 'MR', 'WC', 'SS', 'SE', 'VW', 'ST', 'SP', 'PP', 'CO', 'LB', 'BL', 'SY']
+- ['AC', 'BA', 'BW', 'PG', 'MR', 'BK', 'CP', 'PP', 'SP', 'ST', 'VW', 'LB', 'BL', 'SS', 'SY', 'WC', 'SE', 'CO']
+- ['AC', 'BA', 'BW', 'PG', 'PP', 'ST', 'SE', 'SS', 'SY', 'WC', 'SP', 'BK', 'CP', 'MR', 'VW', 'BL', 'CO', 'LB']
+- ['AC', 'BA', 'BW', 'PG', 'SE']
+- ['AC', 'BA', 'BW', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BA', 'BW', 'ST', 'VW', 'SE', 'SY', 'WC', 'LB']
+- ['AC', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SE']
+- ['AC', 'BA', 'CP', 'BK', 'MR', 'SE', 'BL']
+- ['AC', 'BA', 'CP', 'BK', 'MR', 'SE', 'LB']
+- ['AC', 'BA', 'CP', 'BK', 'MR', 'SE', 'SY']
+- ['AC', 'BA', 'CP', 'BK', 'MR', 'SP', 'VW', 'SE', 'SY', 'SS', 'LB', 'BL']
+- ['AC', 'BA', 'CP', 'BK', 'PG', 'PP', 'SP', 'VW', 'SS', 'SY', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'BK', 'PG', 'VW', 'SS', 'SY', 'SE', 'BL']
+- ['AC', 'BA', 'CP', 'BK', 'SE', 'BL']
+- ['AC', 'BA', 'CP', 'BK', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'BK', 'SE']
+- ['AC', 'BA', 'CP', 'BK', 'SP', 'VW', 'SY', 'SS', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'BK', 'ST', 'SE', 'WC']
+- ['AC', 'BA', 'CP', 'BL', 'LB', 'SE']
+- ['AC', 'BA', 'CP', 'BW', 'WC', 'BK', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'LB', 'BL', 'SE', 'SS', 'SY']
+- ['AC', 'BA', 'CP', 'LB', 'BL', 'SE']
+- ['AC', 'BA', 'CP', 'MR', 'PG', 'SE', 'SS', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'MR', 'PG', 'SP', 'VW', 'SE', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'SE', 'LB', 'BL']
+- ['AC', 'BA', 'CP', 'SE', 'SY', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BA', 'CP', 'SE', 'WC', 'LB', 'BL']
+- ['AC', 'BA', 'CP', 'SE', 'WC', 'LB']
+- ['AC', 'BA', 'CP', 'SE']
+- ['AC', 'BA', 'CP', 'SP', 'SE', 'SY', 'WC', 'LB']
+- ['AC', 'BA', 'CP', 'SP', 'ST', 'SS', 'SE', 'SY', 'WC']
+- ['AC', 'BA', 'CP', 'SY', 'SS', 'SE', 'LB', 'BL']
+- ['AC', 'BA', 'LB', 'BL', 'WC', 'BK']
+- ['AC', 'BA', 'MR', 'BK', 'BW', 'SP', 'ST', 'VW', 'SY', 'BL', 'LB']
+- ['AC', 'BA', 'MR', 'BK', 'ST', 'SE']
+- ['AC', 'BA', 'MR', 'CP', 'PG', 'WC', 'BL', 'SE']
+- ['AC', 'BA', 'MR', 'SE']
+- ['AC', 'BA', 'PG', 'BW', 'BK', 'BL']
+- ['AC', 'BA', 'PG', 'PP', 'SE', 'CP', 'BW', 'WC', 'BK', 'BL', 'LB', 'CO', 'VW']
+- ['AC', 'BA', 'PG', 'PP', 'SP', 'SS', 'SE', 'CP', 'WC', 'BK', 'VW', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'PG', 'SE', 'BK', 'LB']
+- ['AC', 'BA', 'PG', 'SE', 'CP', 'BK']
+- ['AC', 'BA', 'PG', 'SP', 'BW', 'BK', 'VW', 'LB']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'BK', 'SY', 'LB']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'BK', 'SY']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'BK', 'VW', 'LB']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'BW', 'WC', 'BK', 'VW', 'BL', 'LB']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'CP', 'BK', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'CP', 'BK', 'SY']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'CP', 'BK', 'VW', 'LB']
+- ['AC', 'BA', 'PG', 'SP', 'SE', 'CP', 'BW', 'WC', 'BK', 'SY']
+- ['AC', 'BA', 'PP', 'SP', 'SS', 'SE', 'CP', 'VW', 'SY', 'CO']
+- ['AC', 'BA', 'SE', 'BK', 'CO']
+- ['AC', 'BA', 'SE', 'BK', 'CP', 'BW']
+- ['AC', 'BA', 'SE', 'BK', 'LB']
+- ['AC', 'BA', 'SE', 'BK', 'SY', 'LB']
+- ['AC', 'BA', 'SE', 'BK', 'SY']
+- ['AC', 'BA', 'SE', 'BK', 'VW', 'LB']
+- ['AC', 'BA', 'SE', 'BK', 'VW']
+- ['AC', 'BA', 'SE', 'BK']
+- ['AC', 'BA', 'SE', 'BW', 'BK', 'BL', 'LB']
+- ['AC', 'BA', 'SE', 'BW', 'BK', 'BL']
+- ['AC', 'BA', 'SE', 'BW', 'WC', 'BK', 'BL', 'LB']
+- ['AC', 'BA', 'SE', 'CP', 'BK', 'BL']
+- ['AC', 'BA', 'SE', 'CP', 'BK', 'CO', 'MR', 'BL', 'VW']
+- ['AC', 'BA', 'SE', 'CP', 'BK', 'LB']
+- ['AC', 'BA', 'SE', 'CP', 'BK', 'SY', 'CO', 'BW', 'MR', 'SS']
+- ['AC', 'BA', 'SE', 'CP', 'BK']
+- ['AC', 'BA', 'SE', 'CP', 'BW', 'BK', 'BL']
+- ['AC', 'BA', 'SE', 'CP', 'BW', 'SY', 'CO', 'VW', 'BK']
+- ['AC', 'BA', 'SE', 'CP', 'CO', 'BW', 'BK', 'MR']
+- ['AC', 'BA', 'SE', 'CP', 'WC', 'BK', 'SY', 'LB']
+- ['AC', 'BA', 'SE', 'CP', 'WC', 'BK', 'SY']
+- ['AC', 'BA', 'SE', 'LB', 'BL', 'SS', 'CP']
+- ['AC', 'BA', 'SE', 'LB']
+- ['AC', 'BA', 'SE', 'SS', 'BL', 'LB']
+- ['AC', 'BA', 'SE', 'VW']
+- ['AC', 'BA', 'SE']
+- ['AC', 'BA', 'SP', 'SE', 'BK', 'LB']
+- ['AC', 'BA', 'SP', 'SE', 'BK', 'SY', 'LB']
+- ['AC', 'BA', 'SP', 'SE', 'BK', 'VW', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'BK', 'VW']
+- ['AC', 'BA', 'SP', 'SE', 'BK']
+- ['AC', 'BA', 'SP', 'SE', 'BW', 'BK', 'SY', 'LB']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'LB']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'SY', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'SY', 'LB']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'SY']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'VW', 'BL', 'SY', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'VW', 'BL', 'SY']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'VW', 'SY', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK', 'VW', 'SY', 'LB']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BK']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BW', 'BK', 'SY', 'LB']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BW', 'BK', 'VW', 'BL', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'BW', 'BK', 'VW', 'SY', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'WC', 'BK', 'SY']
+- ['AC', 'BA', 'SP', 'SE', 'CP', 'WC', 'BK', 'VW']
+- ['AC', 'BA', 'SP', 'SE', 'WC', 'BK', 'VW', 'BL', 'CO']
+- ['AC', 'BA', 'SP', 'SS', 'CP', 'BK', 'LB']
+- ['AC', 'BA', 'SP', 'SS', 'SE', 'BW', 'BK', 'VW', 'BL', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'SP', 'SS', 'SE', 'CP', 'BK', 'LB']
+- ['AC', 'BA', 'SP', 'SS', 'SE', 'CP', 'BK', 'SY', 'LB', 'CO']
+- ['AC', 'BA', 'SP', 'SS', 'SE', 'CP', 'BK', 'SY']
+- ['AC', 'BA', 'SP', 'SS', 'SE', 'CP', 'BK', 'VW', 'LB']
+- ['AC', 'BA', 'SP', 'SS', 'SE', 'CP', 'WC', 'BK', 'SY']
+- ['AC', 'BA', 'SP', 'SS', 'SE', 'CP', 'WC', 'BK']
+- ['AC', 'BA', 'SP', 'ST', 'VW', 'BK', 'SE', 'SS', 'SY', 'LB', 'BL', 'WC', 'CO']
+- ['AC', 'BA', 'SS', 'SE', 'BW', 'BK', 'SY']
+- ['AC', 'BA', 'SS', 'SE', 'CP', 'BK', 'SY']
+- ['AC', 'BA', 'SS', 'SE', 'CP', 'BK']
+- ['AC', 'BA', 'SS', 'SE', 'VW', 'SY']
+- ['AC', 'BA', 'ST', 'SE', 'BL']
+- ['AC', 'BA', 'ST', 'SE', 'CP']
+- ['AC', 'BA', 'ST', 'SE']
+- ['AC', 'BA', 'ST', 'WC', 'BL']
+- ['AC', 'BA']
+- ['AC', 'BK', 'BA', 'BL', 'LB', 'WC']
+- ['AC', 'BK', 'BA', 'BW', 'CP', 'MR', 'PG', 'ST', 'VW', 'SE', 'SY', 'WC', 'BL', 'LB', 'SS', 'PP', 'SP', 'CO']
+- ['AC', 'BK', 'BA', 'LB', 'BL', 'WC']
+- ['AC', 'BK', 'BA', 'PG', 'SP', 'VW', 'SE', 'SY', 'SS', 'LB', 'BL']
+- ['AC', 'BK', 'BA', 'PP', 'SY', 'SS', 'SE']
+- ['AC', 'BK', 'BA', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'BA', 'SE']
+- ['AC', 'BK', 'BA', 'SP', 'SE', 'SS', 'SY', 'BL']
+- ['AC', 'BK', 'BA', 'SP', 'VW', 'WC', 'BL', 'LB']
+- ['AC', 'BK', 'BA', 'SS', 'SY', 'SE']
+- ['AC', 'BK', 'BA', 'ST', 'SE', 'BL']
+- ['AC', 'BK', 'BA', 'VW', 'SP', 'LB', 'BL', 'WC']
+- ['AC', 'BK', 'BA', 'WC', 'BL', 'LB']
+- ['AC', 'BK', 'BA']
+- ['AC', 'BK', 'BL', 'LB', 'WC']
+- ['AC', 'BK', 'BL', 'WC', 'LB', 'BA']
+- ['AC', 'BK', 'BL', 'WC', 'LB']
+- ['AC', 'BK', 'BW', 'BA', 'CP', 'PG', 'MR', 'PP', 'SP', 'ST', 'SS', 'WC', 'SE', 'SY', 'LB', 'BL', 'CO']
+- ['AC', 'BK', 'BW', 'PG', 'SE', 'LB']
+- ['AC', 'BK', 'BW', 'SE', 'LB']
+- ['AC', 'BK', 'BW', 'ST']
+- ['AC', 'BK', 'CP', 'BA', 'BW', 'PG', 'PP', 'ST', 'SS', 'SY', 'LB']
+- ['AC', 'BK', 'CP', 'BA', 'BW', 'PP', 'PG', 'SP', 'ST', 'SE', 'SS', 'WC', 'SY', 'BL', 'LB', 'CO', 'MR']
+- ['AC', 'BK', 'CP', 'BA', 'SE', 'BL']
+- ['AC', 'BK', 'CP', 'MR', 'PP', 'PG', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO', 'BW', 'BA']
+- ['AC', 'BK', 'CP', 'MR', 'ST', 'SP', 'SS', 'SE', 'SY', 'CO']
+- ['AC', 'BK', 'CP', 'PG', 'SE']
+- ['AC', 'BK', 'CP', 'SE']
+- ['AC', 'BK', 'CP', 'SP', 'VW', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'LB', 'BL', 'WC', 'BA']
+- ['AC', 'BK', 'LB', 'BL', 'WC']
+- ['AC', 'BK', 'LB', 'SY', 'SS', 'SE', 'CO']
+- ['AC', 'BK', 'LB']
+- ['AC', 'BK', 'MR', 'BA', 'BW', 'SE']
+- ['AC', 'BK', 'MR', 'CP', 'BW', 'BA', 'PP', 'SP', 'PG', 'CO', 'BL', 'WC', 'SY', 'SS', 'SE', 'VW', 'ST']
+- ['AC', 'BK', 'MR', 'CP', 'PG', 'PP', 'BA', 'BW', 'VW', 'ST', 'SP', 'SE', 'LB', 'CO', 'BL', 'WC', 'SY', 'SS']
+- ['AC', 'BK', 'MR', 'PG', 'BA', 'SE', 'BL']
+- ['AC', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO', 'CP', 'BW', 'BA']
+- ['AC', 'BK', 'MR', 'PG', 'PP', 'ST', 'VW', 'SS', 'SE', 'SP', 'CP', 'BW', 'BA', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BK', 'MR', 'PG', 'PP']
+- ['AC', 'BK', 'MR', 'PG', 'SE', 'SS', 'SY', 'SP', 'BL']
+- ['AC', 'BK', 'MR', 'PG', 'SE']
+- ['AC', 'BK', 'MR', 'PG', 'SP', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'MR', 'PG', 'ST', 'SE', 'SY']
+- ['AC', 'BK', 'MR', 'PG', 'VW', 'SE', 'BL']
+- ['AC', 'BK', 'MR', 'PG']
+- ['AC', 'BK', 'MR', 'SE', 'BL']
+- ['AC', 'BK', 'MR']
+- ['AC', 'BK', 'PG', 'BL']
+- ['AC', 'BK', 'PG', 'PP', 'SP', 'VW', 'SE', 'CO']
+- ['AC', 'BK', 'PG', 'PP', 'SP', 'VW', 'SE', 'SY', 'BL', 'CO']
+- ['AC', 'BK', 'PG', 'SE', 'BA', 'CP']
+- ['AC', 'BK', 'PG', 'SE', 'BL', 'MR']
+- ['AC', 'BK', 'PG', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'PG', 'SE']
+- ['AC', 'BK', 'PG', 'SP', 'SE', 'CO']
+- ['AC', 'BK', 'PG', 'SP', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'PG', 'SP', 'SS', 'WC', 'LB']
+- ['AC', 'BK', 'PG', 'SP', 'ST', 'SE', 'SS', 'SY', 'WC']
+- ['AC', 'BK', 'PG', 'SP', 'ST', 'VW', 'SE', 'CO', 'BL']
+- ['AC', 'BK', 'PG', 'SP', 'VW', 'SE', 'CO']
+- ['AC', 'BK', 'PG', 'VW', 'SE', 'CO']
+- ['AC', 'BK', 'PG']
+- ['AC', 'BK', 'PP', 'CP', 'MR', 'PG', 'BW', 'BA', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'BL', 'WC', 'LB', 'CO']
+- ['AC', 'BK', 'PP', 'LB']
+- ['AC', 'BK', 'PP']
+- ['AC', 'BK', 'SE', 'BA']
+- ['AC', 'BK', 'SE', 'BL', 'LB']
+- ['AC', 'BK', 'SE', 'BL']
+- ['AC', 'BK', 'SE', 'LB']
+- ['AC', 'BK', 'SE', 'SS', 'BL', 'LB']
+- ['AC', 'BK', 'SE', 'SS', 'SY', 'SP']
+- ['AC', 'BK', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'SE', 'ST', 'BL']
+- ['AC', 'BK', 'SE', 'SY', 'LB', 'SP', 'BA']
+- ['AC', 'BK', 'SE', 'SY', 'SP', 'BW', 'BA']
+- ['AC', 'BK', 'SE', 'SY']
+- ['AC', 'BK', 'SE', 'WC', 'CP']
+- ['AC', 'BK', 'SE']
+- ['AC', 'BK', 'SP', 'BA', 'BL', 'WC', 'LB', 'VW', 'SE']
+- ['AC', 'BK', 'SP', 'BL', 'LB', 'CO']
+- ['AC', 'BK', 'SP', 'LB', 'BL', 'WC', 'VW']
+- ['AC', 'BK', 'SP', 'SE', 'SS', 'SY', 'LB', 'CO']
+- ['AC', 'BK', 'SP', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'SP', 'SE', 'SY', 'SS']
+- ['AC', 'BK', 'SP', 'SE', 'SY']
+- ['AC', 'BK', 'SP', 'SS', 'SE', 'SY']
+- ['AC', 'BK', 'SP', 'ST', 'VW', 'SE', 'WC', 'BL', 'CO']
+- ['AC', 'BK', 'SP', 'ST']
+- ['AC', 'BK', 'SP', 'VW', 'BL', 'WC']
+- ['AC', 'BK', 'SP', 'VW', 'SE']
+- ['AC', 'BK', 'SS', 'SE', 'SY']
+- ['AC', 'BK', 'SS', 'SY', 'SE', 'SP']
+- ['AC', 'BK', 'ST', 'SE', 'BL']
+- ['AC', 'BK', 'ST']
+- ['AC', 'BK', 'SY', 'SS', 'SE']
+- ['AC', 'BK', 'VW', 'LB', 'BL', 'WC']
+- ['AC', 'BK', 'VW', 'SE', 'SS', 'SY', 'BA']
+- ['AC', 'BK', 'VW', 'SE', 'SS', 'SY']
+- ['AC', 'BK', 'VW', 'SE']
+- ['AC', 'BK', 'VW', 'ST', 'SE', 'BL']
+- ['AC', 'BK', 'VW', 'ST', 'SP', 'SE', 'BL']
+- ['AC', 'BK', 'WC', 'BL', 'LB', 'BA']
+- ['AC', 'BK', 'WC', 'BL']
+- ['AC', 'BK']
+- ['AC', 'BL', 'SY', 'SE']
+- ['AC', 'BL']
+- ['AC', 'BW', 'BA', 'BK', 'CP', 'CO', 'BL', 'WC', 'ST', 'SE']
+- ['AC', 'BW', 'BA', 'BK', 'CP', 'LB', 'BL', 'WC', 'SS', 'SE']
+- ['AC', 'BW', 'BA', 'BK', 'CP', 'MR', 'PG', 'PP', 'SP', 'SE', 'ST', 'VW', 'SS', 'SY', 'BL', 'WC', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'BK', 'CP', 'MR', 'PG', 'PP', 'SP', 'SY', 'SE', 'ST', 'VW', 'SS', 'WC', 'LB', 'BL', 'CO']
+- ['AC', 'BW', 'BA', 'BK', 'CP', 'PG', 'MR', 'PP', 'SP', 'SY', 'SS', 'VW', 'ST', 'SE', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'BK', 'CP', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'LB', 'BL', 'SY', 'WC', 'CO']
+- ['AC', 'BW', 'BA', 'BK', 'CP', 'PP', 'PG', 'MR', 'ST', 'VW', 'SP', 'LB', 'WC', 'SY', 'SS', 'SE', 'CO', 'BL']
+- ['AC', 'BW', 'BA', 'BK', 'CP']
+- ['AC', 'BW', 'BA', 'BK', 'MR', 'CP', 'ST', 'SE', 'SY', 'SS']
+- ['AC', 'BW', 'BA', 'BK', 'MR', 'SE']
+- ['AC', 'BW', 'BA', 'BK', 'PG', 'MR', 'PP', 'SP', 'ST', 'SE', 'SS', 'SY', 'WC', 'CO', 'LB', 'BL']
+- ['AC', 'BW', 'BA', 'BK', 'WC', 'BL', 'SE']
+- ['AC', 'BW', 'BA', 'CO', 'LB', 'BL', 'SY', 'SS', 'WC', 'SE', 'ST', 'SP', 'PP', 'BK', 'CP', 'PG']
+- ['AC', 'BW', 'BA', 'CO', 'LB', 'BL', 'WC', 'SY', 'SS', 'SE', 'VW', 'ST']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'CO', 'BL', 'WC', 'SY', 'SS']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SE', 'VW', 'SS', 'SY', 'WC', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'CO', 'LB', 'BL', 'WC', 'SY', 'SS', 'VW', 'SE']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'SE', 'VW', 'BL', 'WC', 'SY', 'SS', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'SY', 'VW', 'ST', 'SS', 'SE', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'VW', 'ST', 'CO', 'LB', 'BL', 'WC', 'SY', 'SS', 'SE']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'ST', 'SP', 'SE', 'VW', 'BL', 'WC', 'SY', 'SS', 'CO', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'ST', 'SP', 'VW', 'SE', 'SS', 'WC', 'SY', 'LB', 'CO', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'PP', 'VW', 'ST', 'SE', 'SY', 'WC']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'ST', 'PP', 'SP', 'VW', 'SE', 'SS', 'SY', 'WC', 'LB', 'CO', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'ST', 'SE', 'VW', 'SP', 'SS', 'SY', 'WC', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'ST', 'VW', 'SE', 'SS', 'BL', 'SY', 'WC', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PG', 'VW', 'SY', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PP', 'PG', 'SP', 'ST', 'SE', 'VW', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'PP', 'SP', 'ST', 'VW', 'SS', 'WC', 'SY', 'BL', 'LB', 'CO', 'SE']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'SE', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'SE', 'SS', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'SP', 'ST', 'SE', 'SY', 'SS', 'WC', 'BL', 'CO', 'LB', 'VW']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'SP', 'ST', 'VW', 'SE', 'SY', 'WC', 'BL', 'LB', 'SS', 'PG']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'SS', 'SE', 'PG', 'PP', 'CO', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'MR', 'VW', 'PG', 'PP', 'SP', 'ST', 'WC', 'SY', 'SS', 'SE', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'PG', 'MR', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'CO', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'PG', 'MR', 'PP', 'SP', 'ST', 'VW', 'SE', 'SY', 'SS', 'WC', 'LB', 'BL', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'PG', 'MR', 'PP', 'SP', 'VW', 'SE', 'ST', 'SS', 'WC', 'SY', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'PG', 'MR', 'ST', 'SE', 'SS']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'PG', 'PP', 'SS', 'SE', 'VW', 'ST', 'SP', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'PG', 'PP', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'PP', 'SP', 'ST', 'PG', 'SE', 'VW', 'SS', 'WC', 'SY', 'LB', 'BL', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SE', 'LB', 'BL', 'SS']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SE', 'SS', 'SY', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SE', 'SS', 'SY', 'WC', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SE', 'SS', 'WC', 'PG', 'MR', 'CO', 'LB', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SP', 'SE', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SP', 'SE', 'SS', 'SY', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SP', 'SS', 'SY', 'ST', 'VW', 'WC', 'BL', 'LB', 'CO', 'SE']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SP', 'SS']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SP', 'ST', 'VW', 'SE', 'BL', 'WC', 'CO', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'CO', 'LB', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'ST', 'PP', 'SE', 'SS', 'CO', 'LB', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'ST', 'SE', 'SY', 'WC', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BK', 'SY', 'SS', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'BL', 'WC', 'SY', 'SS', 'SE', 'VW', 'ST', 'SP']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'PG', 'PP', 'SP', 'ST', 'VW', 'LB', 'BL', 'WC', 'SY', 'SE', 'SS', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'PG', 'SP', 'VW', 'SE', 'SY', 'WC', 'PP', 'ST', 'SS', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'PG', 'VW', 'SE']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'PG']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'PP', 'PG', 'VW', 'ST', 'SP', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'SP', 'PP', 'PG', 'SE', 'VW', 'ST', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'BK', 'SS', 'SE', 'SY', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'MR', 'PG', 'PP', 'ST', 'VW', 'SE', 'SS', 'SY', 'BL', 'WC']
+- ['AC', 'BW', 'BA', 'CP', 'PG', 'BK', 'LB', 'CO', 'BL', 'SY', 'SS', 'WC', 'SE', 'ST', 'SP', 'PP']
+- ['AC', 'BW', 'BA', 'CP', 'PG', 'MR', 'BK', 'PP', 'ST', 'SP', 'VW', 'SS', 'SY', 'SE', 'LB', 'CO', 'BL', 'WC']
+- ['AC', 'BW', 'BA', 'CP', 'PG', 'SE', 'MR']
+- ['AC', 'BW', 'BA', 'CP', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'SE', 'SS', 'SY', 'WC']
+- ['AC', 'BW', 'BA', 'CP', 'SE']
+- ['AC', 'BW', 'BA', 'CP', 'SP', 'BL', 'SY']
+- ['AC', 'BW', 'BA', 'CP', 'SP', 'SE', 'SS', 'SY', 'BL', 'CO', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'SP', 'SE', 'VW', 'SY', 'SS', 'BL', 'LB']
+- ['AC', 'BW', 'BA', 'CP', 'ST', 'SP', 'PP', 'SS', 'SE', 'WC', 'LB', 'BL']
+- ['AC', 'BW', 'BA', 'CP', 'ST', 'SP', 'VW', 'SE', 'SS', 'BL', 'WC', 'SY']
+- ['AC', 'BW', 'BA', 'CP', 'WC', 'BL', 'LB', 'ST', 'PP']
+- ['AC', 'BW', 'BA', 'MR', 'BK', 'CP', 'PG', 'VW', 'SE']
+- ['AC', 'BW', 'BA', 'MR', 'BK', 'CP', 'PP', 'PG', 'VW', 'SS', 'SE', 'ST', 'SP', 'CO', 'LB', 'BL', 'WC', 'SY']
+- ['AC', 'BW', 'BA', 'MR', 'CP', 'BK', 'PG', 'PP', 'ST', 'SP', 'SS', 'SE', 'VW', 'SY', 'WC', 'BL', 'CO', 'LB']
+- ['AC', 'BW', 'BA', 'MR', 'PG', 'PP', 'SE', 'WC', 'ST']
+- ['AC', 'BW', 'BA', 'PG', 'MR', 'BK', 'CP', 'LB', 'WC', 'SY', 'SS', 'VW', 'SP', 'ST']
+- ['AC', 'BW', 'BA', 'PP', 'BK', 'MR', 'VW', 'SS', 'CO', 'BL', 'WC']
+- ['AC', 'BW', 'BA', 'VW', 'SP', 'PG', 'MR', 'BK', 'CP', 'PP', 'ST', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'BA', 'VW', 'ST', 'SP', 'PP', 'PG', 'MR', 'CP', 'BK', 'SE', 'CO', 'LB', 'BL', 'WC', 'SS', 'SY']
+- ['AC', 'BW', 'BK', 'CP', 'BA', 'MR', 'SP', 'ST', 'VW', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BW', 'BK', 'CP', 'PG', 'SE']
+- ['AC', 'BW', 'BK', 'MR', 'BL']
+- ['AC', 'BW', 'BK', 'MR', 'PG', 'PP', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL']
+- ['AC', 'BW', 'BK', 'MR', 'PP', 'ST', 'SE', 'WC', 'CO', 'LB', 'BA']
+- ['AC', 'BW', 'BK', 'MR', 'ST', 'VW', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BW', 'BK', 'PG', 'ST', 'SE', 'SY', 'BL']
+- ['AC', 'BW', 'BK', 'PG', 'ST', 'SE']
+- ['AC', 'BW', 'BK', 'SP', 'ST', 'SE', 'SY']
+- ['AC', 'BW', 'BK', 'VW', 'LB']
+- ['AC', 'BW', 'CP', 'BA', 'BK', 'SE', 'SY', 'WC', 'BL', 'SS']
+- ['AC', 'BW', 'CP', 'BA', 'SE', 'VW', 'ST', 'SP', 'SS', 'SY']
+- ['AC', 'BW', 'CP', 'BK', 'MR', 'BA', 'PG', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'BL', 'CO']
+- ['AC', 'BW', 'CP', 'BK', 'MR', 'PG', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'BW', 'CP', 'BK', 'MR', 'SP', 'PG', 'PP', 'BA', 'ST', 'VW', 'SE', 'SS', 'BL', 'LB', 'WC', 'SY', 'CO']
+- ['AC', 'BW', 'CP', 'BK', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC']
+- ['AC', 'BW', 'CP', 'BK', 'PG', 'SE', 'SY']
+- ['AC', 'BW', 'CP', 'BK', 'PG', 'SE']
+- ['AC', 'BW', 'CP', 'BK', 'PG', 'SP', 'SY', 'SS', 'SE', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'BW', 'CP', 'BK', 'PG', 'VW', 'CO', 'LB']
+- ['AC', 'BW', 'CP', 'BK', 'SE', 'SS', 'LB', 'BL']
+- ['AC', 'BW', 'CP', 'MR', 'PG', 'SE']
+- ['AC', 'BW', 'CP', 'PG', 'PP', 'BK', 'LB', 'WC', 'SY', 'SS', 'SE', 'SP', 'ST', 'CO', 'BL', 'BA']
+- ['AC', 'BW', 'CP', 'PG', 'SE', 'BA']
+- ['AC', 'BW', 'CP', 'SP', 'LB', 'BL', 'SY', 'SE']
+- ['AC', 'BW', 'CP', 'ST', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'BA']
+- ['AC', 'BW', 'PG', 'BK', 'VW']
+- ['AC', 'BW', 'SP', 'SS', 'BL', 'CO', 'LB']
+- ['AC', 'BW', 'VW', 'BK', 'BL']
+- ['AC', 'BW']
+- ['AC', 'CP', 'BA', 'BK', 'MR', 'PG', 'VW', 'SE', 'SS', 'SY', 'BL', 'CO']
+- ['AC', 'CP', 'BA', 'BK', 'PG', 'PP', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'CP', 'BA', 'BL', 'LB', 'SE']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'LB', 'BL', 'WC', 'SY', 'SE', 'SP']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'MR', 'PG', 'PP', 'SP', 'VW', 'SE', 'SY', 'WC', 'ST', 'SS', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'MR', 'PG', 'PP', 'ST', 'SP', 'SS', 'VW', 'SE', 'SY', 'LB', 'BL', 'WC', 'CO']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'MR', 'PG', 'SP', 'PP', 'VW', 'SE', 'SS', 'ST', 'LB', 'WC', 'BL', 'SY', 'CO']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'MR', 'PG', 'SP']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'MR', 'PP', 'PG', 'SP', 'ST', 'VW', 'SS', 'SE', 'SY', 'LB', 'BL', 'WC', 'CO']
+- ['AC', 'CP', 'BA', 'BW', 'BK', 'PG', 'MR', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BA', 'BW', 'MR', 'BK', 'SP', 'SE', 'SY', 'LB']
+- ['AC', 'CP', 'BA', 'BW', 'PG', 'BK', 'MR', 'SE']
+- ['AC', 'CP', 'BA', 'BW', 'SY', 'SS', 'SE', 'VW']
+- ['AC', 'CP', 'BA', 'LB', 'BL', 'SE', 'PG']
+- ['AC', 'CP', 'BA', 'LB', 'BL', 'SE']
+- ['AC', 'CP', 'BA', 'MR', 'BK', 'PG', 'SP', 'VW', 'ST', 'SE', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BA', 'PP', 'SP', 'SE', 'BK']
+- ['AC', 'CP', 'BA', 'SE', 'BL', 'LB', 'BK']
+- ['AC', 'CP', 'BA', 'SE', 'LB', 'BL']
+- ['AC', 'CP', 'BA', 'SE', 'LB']
+- ['AC', 'CP', 'BA', 'SE', 'SS', 'BL', 'LB']
+- ['AC', 'CP', 'BA', 'SE', 'VW']
+- ['AC', 'CP', 'BA', 'ST', 'VW', 'SE', 'BL', 'SS']
+- ['AC', 'CP', 'BA', 'VW', 'SE', 'LB', 'BL']
+- ['AC', 'CP', 'BA', 'VW', 'SE']
+- ['AC', 'CP', 'BK', 'BA', 'BW', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SS', 'SE', 'SY', 'BL', 'WC', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'BA', 'BW', 'MR', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'BA', 'BW', 'ST', 'SE', 'WC', 'LB']
+- ['AC', 'CP', 'BK', 'BA', 'BW', 'WC', 'LB', 'ST', 'SE']
+- ['AC', 'CP', 'BK', 'BA', 'SE', 'LB']
+- ['AC', 'CP', 'BK', 'BA', 'SE']
+- ['AC', 'CP', 'BK', 'BW', 'BA', 'PG', 'SE', 'WC', 'BL', 'LB']
+- ['AC', 'CP', 'BK', 'BW', 'BA', 'SE', 'PG']
+- ['AC', 'CP', 'BK', 'BW', 'BA', 'SE', 'SS', 'SY', 'WC', 'BL']
+- ['AC', 'CP', 'BK', 'BW', 'BA', 'ST', 'SP', 'SE', 'SS', 'LB', 'WC', 'BL']
+- ['AC', 'CP', 'BK', 'BW', 'BA']
+- ['AC', 'CP', 'BK', 'BW', 'SE']
+- ['AC', 'CP', 'BK', 'CO', 'LB', 'BL', 'WC', 'SY', 'SS', 'SE', 'VW', 'ST', 'SP', 'BW', 'BA']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'BA', 'BW', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'BA', 'SE', 'SS', 'SY', 'SP', 'ST', 'CO', 'LB']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SE', 'BL']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SE', 'WC']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SE']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO', 'BW', 'BA']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'WC', 'SY', 'BL', 'LB', 'CO', 'BW', 'BA']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'SY', 'WC', 'BL', 'LB', 'CO', 'SS', 'SE', 'VW', 'ST', 'BW', 'BA']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'VW', 'SE', 'SS', 'SY', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'VW', 'SE', 'SS', 'SY', 'BL', 'LB']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'SE', 'SS', 'SY']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'SE']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'SP', 'SE', 'SS', 'SY', 'CO']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'SP', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'ST', 'VW', 'SE', 'BL', 'LB']
+- ['AC', 'CP', 'BK', 'MR', 'PG', 'VW', 'SE', 'BL']
+- ['AC', 'CP', 'BK', 'MR', 'SE', 'BL', 'LB', 'BA', 'BW', 'PG']
+- ['AC', 'CP', 'BK', 'MR', 'SE', 'PG']
+- ['AC', 'CP', 'BK', 'MR', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'CO']
+- ['AC', 'CP', 'BK', 'PG', 'BW', 'BA', 'MR', 'PP', 'SP', 'ST', 'VW', 'SE', 'SY', 'SS', 'WC', 'LB', 'BL', 'CO']
+- ['AC', 'CP', 'BK', 'PG', 'LB']
+- ['AC', 'CP', 'BK', 'PG', 'MR', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'PP', 'BA', 'BW']
+- ['AC', 'CP', 'BK', 'PG', 'PP', 'SE', 'SS', 'SY']
+- ['AC', 'CP', 'BK', 'PG', 'PP', 'SP', 'ST', 'SE', 'SS', 'WC', 'BL', 'LB']
+- ['AC', 'CP', 'BK', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'WC', 'SY', 'SS', 'BL', 'LB', 'CO', 'BA', 'BW']
+- ['AC', 'CP', 'BK', 'PG', 'PP', 'ST', 'LB', 'BL']
+- ['AC', 'CP', 'BK', 'PG', 'PP', 'ST', 'VW', 'SE', 'CO']
+- ['AC', 'CP', 'BK', 'PG', 'SE', 'SS']
+- ['AC', 'CP', 'BK', 'PG', 'SE', 'SY', 'SP']
+- ['AC', 'CP', 'BK', 'PG', 'SE']
+- ['AC', 'CP', 'BK', 'PG', 'SP', 'SE', 'SY', 'WC']
+- ['AC', 'CP', 'BK', 'PG', 'SP', 'VW', 'SE', 'CO']
+- ['AC', 'CP', 'BK', 'PG', 'SP', 'VW', 'SE', 'SS', 'SY', 'CO']
+- ['AC', 'CP', 'BK', 'PG', 'SP', 'VW', 'SE', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'PG', 'ST', 'SE', 'BL']
+- ['AC', 'CP', 'BK', 'PG', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']
+- ['AC', 'CP', 'BK', 'PG', 'ST']
+- ['AC', 'CP', 'BK', 'PG', 'VW']
+- ['AC', 'CP', 'BK', 'PG']
+- ['AC', 'CP', 'BK', 'PP', 'PG', 'MR', 'SE']
+- ['AC', 'CP', 'BK', 'PP', 'PG', 'SE']
+- ['AC', 'CP', 'BK', 'SE', 'BA']
+- ['AC', 'CP', 'BK', 'SE', 'BL']
+- ['AC', 'CP', 'BK', 'SE', 'BW', 'BA']
+- ['AC', 'CP', 'BK', 'SE', 'BW']
+
+## Top 30 Most Frequent Values
+
+- ['AN', 'CP', 'SY', 'DN', 'CR', 'LB']: 3128
+- ['BA', 'BW', 'AC', 'CP', 'BK', 'MR', 'PG', 'PP', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']: 2003
+- ['AN', 'CP', 'DN', 'CR', 'LB']: 1716
+- ['AN']: 1698
+- ['AN', 'CP', 'CR', 'LB']: 1588
+- ['BA', 'SE']: 1267
+- ['AN', 'CR']: 1184
+- ['AN', 'CP']: 1153
+- ['BA']: 1054
+- ['AN', 'LB']: 1026
+- ['AN', 'CP', 'LB']: 977
+- ['AN', 'CP', 'SY', 'CR']: 460
+- ['CP', 'AN']: 450
+- ['LB']: 409
+- ['LB', 'CR', 'DN', 'SY', 'CP', 'AN']: 397
+- ['CP']: 350
+- ['CP', 'LB']: 328
+- ['AN', 'CP', 'LB', 'CR']: 311
+- []: 284
+- ['AN', 'CP', 'CR']: 246
+- ['AN', 'CR', 'LB']: 244
+- ['AN', 'CP', 'SY', 'DN', 'LB', 'CR']: 228
+- ['BA', 'AC', 'CP', 'BK', 'SE']: 220
+- ['BA', 'BW', 'AC', 'CP', 'BK', 'ST', 'SE', 'WC', 'LB']: 205
+- ['CP', 'AN', 'LB']: 198
+- ['CP', 'DN', 'CR', 'LB']: 196
+- ['BA', 'SP', 'SE', 'SS', 'SY']: 187
+- ['BA', 'BW', 'AC', 'CP', 'BK', 'SP', 'ST', 'VW', 'SE', 'SS', 'SY', 'WC', 'BL', 'LB', 'CO']: 185
+- ['SE']: 182
+- ['BA', 'BW', 'AC', 'CP', 'BK', 'SE']: 178
+
