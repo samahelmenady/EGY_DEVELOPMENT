@@ -87,7 +87,7 @@ reports/figures/*.svg
 reports/figures/*.pdf
 reports/results/*.csv
 reports/results/*.json
-
+data/
 # ─────────────────────────────────────────────
 # Flask / web application
 # ─────────────────────────────────────────────
