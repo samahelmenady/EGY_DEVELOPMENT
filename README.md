@@ -377,11 +377,11 @@ Edit `.env`:
 ```ini
 # Gemini (notebook 03)
 GEMINI_API_KEY=your_gemini_key_here
-GEMINI_MODEL=gemini-2.0-flash
+GEMINI_MODEL=gemini-3.1-flash-lite
 
 # Groq / OpenRouter (notebook 04)
 LLM_PROVIDER=groq          # or "openrouter"
-LLM_MODEL=llama-3.3-70b-versatile
+LLM_MODEL=openai/gpt-oss-120b
 GROQ_API_KEY=your_groq_key_here
 # OPENROUTER_API_KEY=your_openrouter_key_here
 ```
