@@ -182,12 +182,6 @@ dmypy.json
 docs/_build/
 site/
 
-# Temporary exclusions before deploy branch
-Dockerfile
-.dockerignore
-docs/
-docs/**
-
 # ─────────────────────────────────────────────
 # Temporary and misc
 # ─────────────────────────────────────────────

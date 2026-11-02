@@ -1,0 +1,32 @@
+# Development environments and Git
+.git
+.gitignore
+.env
+.env.*
+.venv
+venv/
+ENV/
+
+# Python bytecode & cache
+__pycache__
+*.py[cod]
+*$py.class
+.pytest_cache
+.coverage
+
+# Jupyter notebooks (not needed inside production Docker image)
+notebooks/
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# Raw data and large intermediate CSVs (not needed by live FastAPI app)
+data/raw/
+data/processed/*.csv
+
+# Reports and temporary files
+reports/
+*.tmp
+*.temp
+*.bak
+*.bak.*
+
