@@ -1,461 +1,441 @@
-# Egyptian Real Estate — Machine Learning Project
+# Egyptian Real Estate AI Platform
 
-A machine learning project built on a cleaned Egyptian real estate dataset.
-The project covers three independent tracks: **price prediction** using regression
-models, **property recommendation** using a hybrid system combining content-based
-filtering with K-Means clustering, and an **AI-powered chatbot** that lets users
-explore and query the property database through natural language.
+[![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.13-blue.svg)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-009688.svg?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-1.9.1-F7931E.svg?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-Ensemble-EB5424.svg)](https://xgboost.readthedocs.io/)
+[![Gemini](https://img.shields.io/badge/Google--GenAI-Gemini%20Flash-4285F4.svg?logo=google&logoColor=white)](https://ai.google.dev/)
 
----
-
-## Project Overview
-
-The project ingests raw Egyptian real estate listings, cleans and engineers
-features, then trains and evaluates multiple machine learning models across two
-objectives — and exposes them through a conversational interface:
-
-1. **Price Prediction** — estimate property prices from physical and categorical features.
-2. **Property Recommendation** — suggest similar properties to a given listing
-   without requiring any user interaction history.
-3. **AI Chatbot** — a Gemini / Groq-powered assistant that queries the live
-   property database via function-calling tools, resolves Arabic location names,
-   and guides users to the most relevant listings.
-
-All work is done exclusively on a single dataset of Egyptian real estate listings.
-No external datasets are used.
+An end-to-end, AI-powered real estate web platform for the Egyptian market. The project combines **machine learning regression ensembles**, **hybrid recommendation engines**, a **bilingual AI conversational assistant**, and an interactive **single-page web application** served through a unified, production-ready FastAPI service.
 
 ---
 
-## Objectives
+## Table of Contents
 
-- Clean and standardize raw property listings into a consistent, analysis-ready dataset.
-- Build and compare multiple regression approaches for price prediction.
-- Build a content-based recommender that operates at scale on 62,977 properties.
-- Improve recommendation efficiency through K-Means cluster-based candidate filtering.
-- Combine both recommendation strategies into a production-ready cascade hybrid system.
-- Expose the recommendation and search capabilities through a bilingual (Arabic/English)
-  conversational chatbot backed by Gemini or any OpenAI-compatible LLM (e.g. Groq).
+1. [Platform Architecture](#platform-architecture)
+2. [Key Features](#key-features)
+3. [Project Structure](#project-structure)
+4. [Dataset & Machine Learning Track](#dataset--machine-learning-track)
+   - [Data Cleaning & Feature Engineering](#data-cleaning--feature-engineering)
+   - [Price Prediction (Stacking Regressor)](#price-prediction-stacking-regressor)
+   - [Hybrid Recommendation System](#hybrid-recommendation-system)
+   - [AI Conversational Assistant](#ai-conversational-assistant)
+5. [FastAPI Backend Service](#fastapi-backend-service)
+   - [Architecture & Design Decisions](#architecture--design-decisions)
+   - [API Reference](#api-reference)
+6. [Frontend Single-Page Application](#frontend-single-page-application)
+7. [Installation & Setup](#installation--setup)
+8. [Running the Application](#running-the-application)
+9. [Production Deployment Recommendations](#production-deployment-recommendations)
+10. [Troubleshooting](#troubleshooting)
+
+---
+
+## Platform Architecture
+
+The platform runs from a single unified FastAPI host on port `8000`, serving both the backend APIs and the frontend Single-Page Application (SPA) without CORS friction:
+
+```text
+Browser (Client SPA)
+  │
+  ├──► GET  /                   ──► Serves Front/index.html & static assets
+  ├──► POST /api/chat           ──► Async Chatbot Router (SessionManager + Gemini / Groq)
+  ├──► POST /api/predict        ──► Price Prediction Router (StackingRegressor + expm1)
+  └──► GET  /api/health         ──► System Health & Operational Status Monitor
+```
+
+```text
+                                  ┌────────────────────────┐
+                                  │   FastAPI Service      │
+                                  │       (app.py)         │
+                                  └───────────┬────────────┘
+                                              │
+                      ┌───────────────────────┼───────────────────────┐
+                      ▼                       ▼                       ▼
+           ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐
+           │     api/chat.py     │ │   api/predict.py    │ │    core/startup     │
+           │  (Non-blocking I/O) │ │  (Offloaded Thread) │ │  (Lifespan Cache)   │
+           └──────────┬──────────┘ └──────────┬──────────┘ └──────────┬──────────┘
+                      │                       │                       │
+                      ▼                       ▼                       ▼
+           ┌─────────────────────┐ ┌─────────────────────┐ ┌─────────────────────┐
+           │   ChatSession       │ │  StackingRegressor  │ │   Singletons:       │
+           │  (Gemini / Groq)    │ │ (XGBoost + Sklearn) │ │  - Regression Model │
+           │  + 6 Domain Tools   │ │  Target: expm1()    │ │  - LLM Client       │
+           └─────────────────────┘ └─────────────────────┘ │  - SessionManager  │
+                                                           └─────────────────────┘
+```
+
+---
+
+## Key Features
+
+1. **AI Real Estate Chatbot**:
+   - Conversational assistant fluent in **Egyptian Arabic** and **English**.
+   - Leverages Gemini Function Calling to execute 6 custom domain tools: property search, aggregations, similarity lookups, Arabic location resolution, and dynamic suggestion generation.
+   - Preserves multi-turn conversation memory via thread-safe, TTL-bounded sessions.
+   - Full grounding checks to prevent numerical hallucinations.
+
+2. **Accurate Price Valuation (ML Regression)**:
+   - Evaluates properties based on size, bedrooms, bathrooms, geographical coordinates, property type, and transaction category.
+   - Built on a **Stacking Ensemble** combining Ridge, Lasso, ElasticNet, Gradient Boosting, and XGBoost with a Linear Regression meta-learner ($R^2 = 0.930$).
+   - Returns point estimates and realistic $\pm8\%$ market confidence intervals rounded to market-standard steps.
+
+3. **Hybrid Recommendation Engine**:
+   - Cascade Hybrid combining a 19-cluster **K-Means segmentation** with **Content-Based Cosine Similarity** across 191 engineered features.
+   - Pre-indexed neighbor lookups delivering sub-millisecond retrieval across 62,977 listings.
+
+4. **Production-Ready Web Service**:
+   - Fully modularized FastAPI architecture with centralized Pydantic settings.
+   - Automatic HTTP request latency logging middleware.
+   - Comprehensive error handling and input validation (Pydantic models).
+   - Zero-configuration static hosting serving the complete responsive UI.
 
 ---
 
 ## Project Structure
 
-```
+```text
 ADV_ML_02/
-├── data/
-│   ├── raw/
-│   │   └── all_egypt.csv                      # Original raw listings
-│   └── processed/
-│       ├── cleaned_all_egypt.csv              # Cleaned dataset (62,977 rows, 18 columns)
-│       ├── clustered_all_egypt.csv            # Cleaned dataset with cluster column added
-│       └── chat_bot/                          # Chatbot-specific data assets
-│           ├── chatbot_properties_v2.parquet  # Optimised property table for the chatbot
-│           ├── amenities_mapping_v2.json      # Verified amenity code → name mapping
-│           ├── location_lookup.csv            # Canonical location resolution table
-│           ├── conversations_demo.json        # Sample recorded conversations
-│           ├── engine_metrics.csv             # Per-turn metrics (Gemini backend)
-│           ├── engine_metrics_groq.csv        # Per-turn metrics (Groq backend)
-│           └── tools_test_results.csv         # Tool-level unit test results
-├── models/
-│   ├── regression/                            # Price prediction artifacts
-│   ├── recommendation/                        # Content-based filtering artifacts
-│   ├── clustering/                            # K-Means artifacts
-│   └── hybrid/                               # Hybrid system configuration
-├── notebooks/
-│   ├── 01_Preprocessing/
-│   │   └── 01_cleaning_data_modified.ipynb
-│   ├── 02_Price_Regression/
-│   │   ├── 01_Price_Regression.ipynb
-│   │   ├── 02_Boosting_Regression.ipynb
-│   │   └── 03_Stacking_Regression.ipynb
-│   ├── 03_Recommendation/
-│   │   ├── 01_Content_Based_Filtering.ipynb
-│   │   ├── 02_ML_Clustering.ipynb
-│   │   └── 03_Hybrid_Recommendation_System.ipynb
-│   └── 04_Chat_bot/
-│       ├── 01_Chatbot_Data_Preparation.ipynb  # Build parquet, amenity map, location lookup
-│       ├── 02_Chatbot_Tools.ipynb             # Develop & unit-test all tool functions
-│       ├── 03_Gemini_Function_Calling.ipynb   # End-to-end chatbot with Gemini backend
-│       └── 04_LLMClient_Groq.ipynb            # End-to-end chatbot with Groq/OpenRouter
-├── reports/
-│   ├── figures/
-│   ├── results/
-│   └── recommendation_dataset_summary.md
-├── src/
+├── app.py                              # FastAPI entry point, lifespan, middleware & static hosting
+├── schemas.py                          # Pydantic request/response data contracts
+├── requirements.txt                    # Project dependencies
+├── .env.example                        # Template for API keys & configuration
+│
+├── core/                               # Core application foundation
+│   ├── __init__.py
+│   ├── config.py                       # Centralized pydantic-settings configuration
+│   ├── startup.py                      # Model preloading & LLM client factory
+│   └── sessions.py                     # Thread-safe in-memory session manager (30m TTL)
+│
+├── api/                                # REST API routers
+│   ├── __init__.py
+│   ├── chat.py                         # POST /api/chat endpoint
+│   └── predict.py                      # POST /api/predict endpoint
+│
+├── Front/                              # Single-Page Application (SPA)
+│   ├── index.html                      # Bilingual HTML layout
+│   ├── style.css                       # Responsive design & animations
+│   ├── script.js                       # Real API integration (chat, predict, UI)
+│   └── assets/                         # Images, icons, and client data
+│
+├── models/                             # Trained model artifacts
+│   ├── regression/
+│   │   ├── final_price_prediction_model.joblib   # Production StackingRegressor
+│   │   ├── best_regression_model.joblib
+│   │   └── best_boosting_model.joblib
+│   ├── recommendation/                 # CBF similarity indices and encoders
+│   └── clustering/                     # K-Means model (K=19) and scalers
+│
+├── src/                                # Machine learning & chatbot source code
 │   ├── preprocessing.py
 │   ├── feature_engineering.py
 │   ├── evaluation.py
 │   ├── utils.py
-│   └── chatbot/                              # Production-ready chatbot package
-│       ├── __init__.py
-│       ├── tools.py                          # Six tool functions + TOOL_DECLARATIONS
-│       ├── chat_engine.py                    # ChatSession, GeminiClient, FakeLLMClient
-│       ├── openai_client.py                  # OpenAICompatibleClient (Groq / OpenRouter)
-│       └── prompts.py                        # SYSTEM_PROMPT + user_profile_section()
-├── .env.example                              # API key template (copy → .env)
-├── requirements.txt
-└── README.md
+│   └── chatbot/                        # Chatbot engine package
+│       ├── chat_engine.py              # ChatSession & GeminiClient
+│       ├── openai_client.py            # OpenAICompatibleClient (Groq / OpenRouter)
+│       ├── tools.py                    # 6 functional tool implementations
+│       └── prompts.py                  # Bilingual system prompts
+│
+├── notebooks/                          # Development & experimentation notebooks
+│   ├── 01_Preprocessing/
+│   ├── 02_Price_Regression/
+│   ├── 03_Recommendation/
+│   └── 04_Chat_bot/
+│
+└── data/                               # Datasets (raw & processed)
+    ├── raw/all_egypt.csv
+    └── processed/
 ```
 
 ---
 
-## Dataset
+## Dataset & Machine Learning Track
 
-| Attribute | Value |
-|-----------|-------|
-| Source | Egyptian real estate listings (raw: `all_egypt.csv`) |
-| Cleaned rows | 62,977 properties |
-| Columns | 18 (id, title, price, currency, property\_type, location, latitude, longitude, bedrooms, bathrooms, size, amenities, category, and others) |
-| Property categories | `buy` (19,965) · `rent` (19,979) · `commercial_buy` (8,953) · `commercial_rent` (14,080) |
-| Top property types | Apartment (25,086) · Office Space (14,283) · Villa (5,583) · Shop (3,453) · Chalet (2,192) |
-| Price (median) | 485,000 EGP |
-| Size (median) | 167 m² |
-| Bedrooms range | 1 – 7 |
+### Data Cleaning & Feature Engineering
+- Processed **62,977 listings** sourced from [Kaggle](https://www.kaggle.com/datasets/mohammedhassan1112/egypt-property-finder) across 4 primary categories: `buy`, `rent`, `commercial_buy`, and `commercial_rent`.
+- Cleaned skewed distributions, unified price currencies, parsed geographic locations into canonical Egyptian governorates/cities/districts, and engineered coordinate features.
 
----
+### Price Prediction (Stacking Regressor)
+- **Target Variable**: Trained on $\log(1 + \text{price})$ to address exponential price distributions.
+- **Inference Pipeline**: Output is mapped back via $\text{expm1}(y)$ to compute real-world EGP values.
+- **Features Used**: `size`, `bedrooms`, `bathrooms`, `latitude`, `longitude`, `property_type`, `category`.
+- **Performance**:
+  - $R^2 = 0.930$, $\text{RMSE} = 0.724$ on the held-out test split.
 
-## Data Preprocessing
+### Hybrid Recommendation System
+- **Stage 1 (Retrieval)**: Uses K-Means ($K=19$) to segment properties, pruning the candidate pool by $\sim95\%$.
+- **Stage 2 (Ranking)**: Precomputed cosine similarity across 191-dimensional feature vectors (amenities, location, price, dimensions) ensures sub-millisecond retrieval.
 
-**Notebook:** `01_Preprocessing/01_cleaning_data_modified.ipynb`
-
-- Removed unnecessary identifier and metadata columns.
-- Dropped records with missing values in essential features (price, size, location, property type, category).
-- Preserved intentionally missing values in `bedrooms` and `bathrooms` (imputed later per model).
-- Standardized column types and verified the final dataset shape.
-- Saved the cleaned dataset to `data/processed/cleaned_all_egypt.csv`.
+### AI Conversational Assistant
+- **Dual Backend Support**: Operates out-of-the-box with Google Gemini (`gemini-3.5-flash-lite`, `gemini-2.0-flash`) or OpenAI-compatible gateways (Groq / OpenRouter).
+- **Tool Calling Architecture**: Integrates 6 internal functions with automatic thought signature retention to support newer reasoning models.
 
 ---
 
-## Price Prediction
+## FastAPI Backend Service
 
-Three notebooks progressively build and compare regression approaches.
-All models use a `ColumnTransformer` preprocessing pipeline with `RobustScaler`
-for numerical features and `OneHotEncoder` for categorical ones.
-Metrics are computed on a held-out test set. Prices are log-transformed before
-training to handle skewness.
+### Architecture & Design Decisions
 
-### Notebook 01 — Linear Models
+1. **Singleton Preloading**:
+   - The Stacking Regressor and LLM Client are initialized **once** during FastAPI application startup (`lifespan`). Request handlers reuse cached instances from `app.state`, eliminating per-request loading overhead.
+2. **Asynchronous Non-Blocking Execution**:
+   - Synchronous, CPU-bound ML predictions and blocking LLM network calls are dispatched via `anyio.to_thread.run_sync()`. This ensures the main asyncio event loop remains responsive.
+3. **Thread-Safe Session Manager**:
+   - Handles multi-turn conversational history with in-memory mutex protection (`threading.Lock`) and automatic lazy eviction of inactive sessions (default TTL: 30 minutes).
+4. **Request Logging Middleware**:
+   - Intercepts all incoming requests, logging HTTP method, path, status code, and latency formatted in milliseconds or seconds.
 
-Compares Linear, Polynomial (degrees 2 and 3), Ridge, Lasso, ElasticNet, and a
-Dummy baseline.
+### API Reference
 
-| Model | MAE | RMSE | R² |
-|-------|-----|------|-----|
-| Polynomial (degree=3) | 0.61 | 0.97 | 0.875 |
-| Polynomial (degree=2) | 0.77 | 1.19 | 0.811 |
-| Linear / Ridge | 0.83 | 1.29 | 0.776 |
-| Dummy (mean) | 2.51 | 2.73 | 0.000 |
+#### 1. `POST /api/chat`
+Send a message to the AI real estate assistant.
 
-**Best:** Polynomial Regression (degree=3) — saved as `best_regression_model.joblib`.
+- **Request Body**:
+  ```json
+  {
+    "message": "I want to rent a 2-bedroom apartment in Maadi",
+    "session_id": "optional-uuid-string"
+  }
+  ```
+- **Response Body**:
+  ```json
+  {
+    "reply": "I found 2 apartments for rent in Maadi with 2 bedrooms...",
+    "session_id": "c4557537-0872-461e-9b0e-86ea3b70ae4c",
+    "properties": [
+      {
+        "id": 7105183,
+        "title": "Furnished apartment for rent in Maadi",
+        "price": 28000.0,
+        "price_label": "EGP / month",
+        "property_type": "Apartment",
+        "category": "rent",
+        "location": "Maadi, Hay El Maadi, Cairo",
+        "bedrooms": 2.0,
+        "bathrooms": 1.0,
+        "size": 140.0,
+        "image_url": "https://...",
+        "share_url": "https://..."
+      }
+    ],
+    "suggestions": ["Cairo", "Degla", "Sarayat El Maadi"]
+  }
+  ```
 
-### Notebook 02 — Boosting Models
+#### 2. `POST /api/predict`
+Calculate a market valuation estimate for a property.
 
-Compares Decision Tree, AdaBoost, Gradient Boosting, and XGBoost.
+- **Request Body**:
+  ```json
+  {
+    "category": "buy",
+    "property_type": "Apartment",
+    "size": 150.0,
+    "bedrooms": 3.0,
+    "bathrooms": 2.0,
+    "latitude": 30.022596,
+    "longitude": 31.470938
+  }
+  ```
+- **Response Body**:
+  ```json
+  {
+    "predicted_price": 9225000.0,
+    "range_low": 8475000.0,
+    "range_high": 9975000.0,
+    "currency": "EGP"
+  }
+  ```
 
-| Model | MAE | RMSE | R² |
-|-------|-----|------|-----|
-| Gradient Boosting (n=200, lr=0.2, depth=6) | 0.358 | 0.697 | 0.935 |
-| XGBoost (n=300, lr=0.2, depth=5) | 0.362 | 0.696 | 0.935 |
-| Decision Tree (max\_depth=4) | 0.592 | 0.929 | 0.884 |
-| AdaBoost (n=50, lr=0.01) | 0.634 | 0.977 | 0.872 |
+#### 3. `GET /api/health`
+Health check verifying internal subsystems.
 
-**Best:** Gradient Boosting — saved as `best_boosting_model.joblib`.
-
-### Notebook 03 — Stacking and Voting Ensembles
-
-Combines the best base learners into Voting and Stacking regressors.
-
-| Model | MAE | RMSE | R² |
-|-------|-----|------|-----|
-| Stacking Regressor | 0.401 | 0.724 | 0.930 |
-| Voting Regressor | 0.609 | 0.983 | 0.871 |
-
-**Final model:** Stacking Regressor — saved as `final_price_prediction_model.joblib`.
-
----
-
-## Recommendation System
-
-Three notebooks implement an end-to-end item-based recommendation pipeline.
-No user interaction data is required.
-
-### Notebook 01 — Content-Based Filtering
-
-Builds a property similarity model using a 191-dimensional feature matrix
-(log-price, log-size, bedrooms, bathrooms, coordinates, amenities via
-MultiLabelBinarizer, property type, and category). Cosine similarity is
-computed between all property pairs. The top-50 neighbors for every property
-are pre-indexed and saved to disk to enable sub-millisecond query-time lookups.
-
-### Notebook 02 — K-Means Clustering Pipeline
-
-Trains a K-Means model (K=19, selected via Elbow + Silhouette search over
-K=4–20) to segment properties into market-coherent clusters. Features used:
-`log_price`, `log_size`, `bedrooms`, `bathrooms`, `bed_bath_ratio`, plus
-OneHotEncoded `category` and `property_type` (41 total features, scaled with
-`RobustScaler`). Each property is assigned a cluster label and the result is
-saved to `clustered_all_egypt.csv`.
-
-### Notebook 03 — Hybrid Recommendation System
-
-Implements a **Cascade Hybrid** that chains the two models:
-
-1. **Stage 1 (Retrieval):** Look up the query property's cluster using the
-   precomputed K-Means assignment — reduces the search space from 62,977 to
-   ~3,300 properties (~19× reduction).
-2. **Stage 2 (Ranking):** Run Content-Based cosine similarity only within that
-   cluster, using the precomputed top-50 neighbor index.
-3. **Output:** Return the Top-N most similar in-cluster properties with rank,
-   similarity score, price, property type, category, bedrooms, bathrooms, size,
-   and location.
-
-The hybrid guarantees that recommendations stay within the same market segment
-(e.g., rental apartments do not surface commercial buy listings) while
-maintaining the precision of feature-level similarity ranking.
-
----
-
-## AI Chatbot
-
-The chatbot is a bilingual (Arabic / English) conversational assistant that lets
-users search, filter, and explore the property database through natural language.
-It is implemented as a reusable Python package under `src/chatbot/` and developed
-across four notebooks.
-
-### Architecture
-
-```
-ChatSession
-  ├── LLMClient (abstract)
-  │     ├── GeminiClient          ← google-genai ≥ 1.0, function-calling mode
-  │     └── OpenAICompatibleClient ← httpx-based, works with Groq / OpenRouter
-  └── Tool loop  ──► src/chatbot/tools.py
-                        ├── search_properties     # filter + sort listings
-                        ├── get_breakdown         # aggregate stats by dimension
-                        ├── get_similar           # cosine-similarity neighbours
-                        ├── suggest_next_question # rule-based slot advisor
-                        ├── relax_filters         # progressive filter relaxation
-                        └── resolve_location      # Arabic → canonical location
-```
-
-### Chatbot Notebooks
-
-| Notebook | Purpose |
-|----------|---------|
-| `04_Chat_bot/01_Chatbot_Data_Preparation.ipynb` | Build `chatbot_properties_v2.parquet`, `amenities_mapping_v2.json`, and `location_lookup.csv` from the cleaned dataset |
-| `04_Chat_bot/02_Chatbot_Tools.ipynb` | Develop and unit-test all six tool functions against the live data |
-| `04_Chat_bot/03_Gemini_Function_Calling.ipynb` | End-to-end chatbot using `GeminiClient`; logs metrics to `engine_metrics.csv` |
-| `04_Chat_bot/04_LLMClient_Groq.ipynb` | Same chatbot via `OpenAICompatibleClient` (Groq / OpenRouter); logs to `engine_metrics_groq.csv` |
-
-### Key Design Decisions
-
-- **Backend-agnostic `ChatSession`** — swapping Gemini for Groq (or any OpenAI-compatible
-  endpoint) requires only passing a different `LLMClient` instance.
-- **Dynamic tool selection** — on first turns, only `search_properties` and
-  `resolve_location` are sent to the model (~83% token reduction). Extended tools
-  (`get_breakdown`, `get_similar`, `suggest_next_question`) are added after the
-  first tool-call round. `relax_filters` replaces them when the last search
-  returned zero results.
-- **Schema compaction** — tool descriptions and redundant filter-property metadata
-  are stripped before every API call to stay within token-per-minute limits.
-- **Exponential-backoff retry** — both clients retry transient errors (429, 503,
-  timeout) up to 3 times; `OpenAICompatibleClient` also honours `Retry-After` headers.
-- **Grounding check** — `ChatSession` warns if the model's reply contains numbers
-  that are not present in any tool result from the current turn.
-- **`FakeLLMClient`** — scripted backend for deterministic unit tests without
-  real API calls.
-- **Bilingual system prompt** — Gemini mirrors the user's language (Egyptian Arabic
-  or English) at runtime; raw amenity codes are never exposed to the user.
+- **Response Body**:
+  ```json
+  {
+    "status": "ok",
+    "model_loaded": true,
+    "llm_client_ready": true,
+    "active_sessions": 1,
+    "llm_backend": "GeminiClient"
+  }
+  ```
 
 ---
 
-## Technologies Used
+## Frontend Single-Page Application
 
-| Category | Libraries |
-|----------|-----------|
-| Data manipulation | `pandas`, `numpy`, `pyarrow` |
-| Machine learning | `scikit-learn`, `xgboost` |
-| Similarity search | `scipy.sparse`, `sklearn.metrics.pairwise` |
-| Persistence | `joblib` |
-| Visualization | `matplotlib`, `seaborn` |
-| LLM — Gemini | `google-genai >= 1.0` |
-| LLM — OpenAI-compatible | `httpx >= 0.24` (openai SDK optional) |
-| Configuration | `python-dotenv >= 1.0` |
-| Environment | Python 3.13, Jupyter Notebook / JupyterLab |
+The frontend is an interactive, bilingual (Arabic RTL / English LTR) web application located under `Front/`:
+- **Zero Framework Bloat**: Built with vanilla HTML5, CSS3, and JavaScript for maximum performance and instant load times.
+- **Real-Time AI Integration**:
+  - Chat interface connects to `/api/chat` with dynamic typing indicators, card rendering, and prompt suggestions.
+  - Interactive price valuation form connects to `/api/predict` with loading states and smooth entry animations.
+  - Session state persists across refreshes using browser `sessionStorage`.
 
 ---
 
-## Project Workflow
+## Installation & Setup
 
-```
-Raw Data
-  └─► 01_Preprocessing            → cleaned_all_egypt.csv
-        ├─► 02_Price_Regression
-        │     ├─ 01_Price_Regression      → best_regression_model.joblib
-        │     ├─ 02_Boosting_Regression   → best_boosting_model.joblib
-        │     └─ 03_Stacking_Regression   → final_price_prediction_model.joblib
-        ├─► 03_Recommendation
-        │     ├─ 01_Content_Based_Filtering → feature_matrix.npz, top_indices.npy
-        │     ├─ 02_ML_Clustering           → kmeans_model.joblib, clustered_all_egypt.csv
-        │     └─ 03_Hybrid_Recommendation   → hybrid_config.joblib
-        └─► 04_Chat_bot
-              ├─ 01_Chatbot_Data_Preparation → chatbot_properties_v2.parquet,
-              │                                amenities_mapping_v2.json,
-              │                                location_lookup.csv
-              ├─ 02_Chatbot_Tools            → tools_test_results.csv
-              ├─ 03_Gemini_Function_Calling  → engine_metrics.csv,
-              │                                conversations_demo.json
-              └─ 04_LLMClient_Groq           → engine_metrics_groq.csv
-```
+### Prerequisites
+- Python 3.11, 3.12, or 3.13
+- Git
 
----
-
-## Generated Artifacts
-
-| Path | Description |
-|------|-------------|
-| `data/processed/cleaned_all_egypt.csv` | Cleaned dataset (62,977 × 18) |
-| `data/processed/clustered_all_egypt.csv` | Cleaned dataset + `cluster` column |
-| `data/processed/chat_bot/chatbot_properties_v2.parquet` | Chatbot-optimised property table (categorical dtypes, images, share\_url) |
-| `data/processed/chat_bot/amenities_mapping_v2.json` | Verified amenity code → name mapping (v2 format with `verified` flag) |
-| `data/processed/chat_bot/location_lookup.csv` | Canonical governorate / city / district / area lookup for `resolve_location` |
-| `data/processed/chat_bot/conversations_demo.json` | Recorded demo conversations |
-| `data/processed/chat_bot/engine_metrics.csv` | Per-turn token + latency metrics (Gemini) |
-| `data/processed/chat_bot/engine_metrics_groq.csv` | Per-turn token + latency metrics (Groq) |
-| `data/processed/chat_bot/tools_test_results.csv` | Tool unit-test results |
-| `models/regression/best_regression_model.joblib` | Best linear model (Polynomial degree=3) |
-| `models/regression/best_boosting_model.joblib` | Best boosting model (Gradient Boosting) |
-| `models/regression/final_price_prediction_model.joblib` | Final ensemble (Stacking Regressor) |
-| `models/regression/regression_results.csv` | Linear model comparison metrics |
-| `models/regression/boosting_results.csv` | Boosting model comparison metrics |
-| `models/regression/stacking_results.csv` | Ensemble model comparison metrics |
-| `models/recommendation/feature_matrix.npz` | Sparse CBF feature matrix (62,977 × 191) |
-| `models/recommendation/top_indices.npy` | Pre-indexed top-50 neighbors per property |
-| `models/recommendation/top_scores.npy` | Corresponding cosine similarity scores |
-| `models/recommendation/preprocessor.joblib` | Fitted `ColumnTransformer` for CBF |
-| `models/recommendation/id_to_idx.joblib` | Property ID → matrix row index map |
-| `models/recommendation/idx_to_id.joblib` | Matrix row index → property ID map (reverse) |
-| `models/recommendation/mlb.joblib` | Fitted `MultiLabelBinarizer` for amenities |
-| `models/recommendation/amenity_labels.joblib` | Amenity label array |
-| `models/recommendation/feature_names.joblib` | Ordered feature names for CBF pipeline |
-| `models/clustering/kmeans_model.joblib` | Trained K-Means model (K=19) |
-| `models/clustering/scaler.joblib` | Fitted `RobustScaler` for clustering |
-| `models/clustering/feature_names.joblib` | Ordered feature list for clustering pipeline |
-| `models/clustering/label_encoders.joblib` | Fitted label encoders for clustering |
-| `models/clustering/pca.joblib` | Fitted PCA (if used) |
-| `models/clustering/id_cluster_map.joblib` | Property ID → cluster label map |
-| `models/hybrid/hybrid_config.joblib` | Hybrid system metadata and artifact paths |
-| `models/hybrid/id_cluster_map.joblib` | Property ID → cluster map (hybrid copy) |
-
----
-
-## How to Run the Project
-
-### 1. Environment Setup
+### 1. Clone & Set Up Virtual Environment
 
 ```bash
-# Create and activate a virtual environment (recommended)
-python -m venv .venv
-.venv\Scripts\activate        # Windows
-# source .venv/bin/activate   # macOS / Linux
+# Clone the repository
+git clone <repo-url>
+cd ADV_ML_02
 
-# Install all dependencies
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+# Windows (PowerShell):
+.venv\Scripts\Activate.ps1
+# Windows (cmd):
+.venv\Scripts\activate.bat
+# Linux / macOS:
+source .venv/bin/activate
+```
+
+### 2. Install Dependencies
+
+```bash
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
-### 2. API Keys (chatbot only)
+### 3. Configure Environment Variables
 
-Copy `.env.example` to `.env` and fill in your keys:
+Copy `.env.example` to `.env`:
 
 ```bash
+cp .env.example .env     # Linux / macOS
 copy .env.example .env   # Windows
-# cp .env.example .env   # macOS / Linux
 ```
 
-Edit `.env`:
+Edit `.env` with your API credentials:
 
 ```ini
-# Gemini (notebook 03)
-GEMINI_API_KEY=your_gemini_key_here
-GEMINI_MODEL=gemini-3.1-flash-lite
+# Gemini API Key (recommended)
+GEMINI_API_KEY=your_gemini_api_key_here
+GEMINI_MODEL=gemini-3.5-flash-lite
 
-# Groq / OpenRouter (notebook 04)
-LLM_PROVIDER=groq          # or "openrouter"
+# Groq / OpenRouter fallback (optional)
+LLM_PROVIDER=groq
 LLM_MODEL=openai/gpt-oss-120b
-GROQ_API_KEY=your_groq_key_here
-# OPENROUTER_API_KEY=your_openrouter_key_here
+GROQ_API_KEY=your_groq_api_key_here
 ```
 
-### 3. Launch Jupyter
+---
+
+## Running the Application
+
+### Development Server
+
+Start the application with Uvicorn:
 
 ```bash
-jupyter notebook
-# or: jupyter lab
+# Windows:
+.venv\Scripts\uvicorn app:app --reload --host 127.0.0.1 --port 8000
+
+# Linux / macOS:
+uvicorn app:app --reload --host 127.0.0.1 --port 8000
 ```
 
-### 4. Run Notebooks in Order
+### Accessing the Platform
 
-```
-# Preprocessing (required first):
-notebooks/01_Preprocessing/01_cleaning_data_modified.ipynb
-
-# Price prediction track:
-notebooks/02_Price_Regression/01_Price_Regression.ipynb
-notebooks/02_Price_Regression/02_Boosting_Regression.ipynb
-notebooks/02_Price_Regression/03_Stacking_Regression.ipynb
-
-# Recommendation track:
-notebooks/03_Recommendation/01_Content_Based_Filtering.ipynb
-notebooks/03_Recommendation/02_ML_Clustering.ipynb
-notebooks/03_Recommendation/03_Hybrid_Recommendation_System.ipynb
-
-# Chatbot track (requires recommendation artifacts above):
-notebooks/04_Chat_bot/01_Chatbot_Data_Preparation.ipynb
-notebooks/04_Chat_bot/02_Chatbot_Tools.ipynb
-notebooks/04_Chat_bot/03_Gemini_Function_Calling.ipynb   # needs GEMINI_API_KEY
-notebooks/04_Chat_bot/04_LLMClient_Groq.ipynb            # needs GROQ_API_KEY
-```
-
-> **Note:** The raw dataset (`data/raw/all_egypt.csv`) must be present before
-> running the preprocessing notebook. All subsequent notebooks load from
-> `data/processed/`.
+- **Web Application**: Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in any browser.
+- **Interactive Swagger Docs**: Open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs).
+- **Health Check**: Open [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health).
 
 ---
 
-## Using the Chatbot Package Programmatically
+## Production Deployment Recommendations
 
-```python
-from src.chatbot.chat_engine import ChatSession, GeminiClient, load_env
+For production environments (Linux / Cloud VM / Container), the following architecture is recommended:
 
-# Using Gemini (reads GEMINI_API_KEY + GEMINI_MODEL from .env)
-api_key, model_name = load_env()
-session = ChatSession(llm_client=GeminiClient(api_key, model_name))
-result = session.send("Show me 3-bedroom apartments for sale in New Cairo")
-print(result["reply"])
+### 1. Process Management with Gunicorn & Uvicorn Workers
 
-# Using Groq / OpenRouter
-from src.chatbot.openai_client import OpenAICompatibleClient, load_env_openai
+Run Uvicorn workers managed by Gunicorn for high concurrency and auto-restart on worker crash:
 
-api_key, model_name, provider, base_url = load_env_openai()
-client = OpenAICompatibleClient(api_key, model_name, base_url, provider)
-session = ChatSession(llm_client=client)
-result = session.send("عايز شقة للإيجار في القاهرة")
-print(result["reply"])
+```bash
+pip install gunicorn
+
+gunicorn app:app \
+  --workers 4 \
+  --worker-class uvicorn.workers.UvicornWorker \
+  --bind 0.0.0.0:8000 \
+  --access-logfile - \
+  --error-logfile -
+```
+
+> **Note on Session Scaling**: When running multiple worker processes, consider migrating the in-memory `SessionManager` in `core/sessions.py` to a shared Redis store so chat session state is accessible across all workers.
+
+### 2. Reverse Proxy with Nginx
+
+Place Nginx in front of the application for SSL termination (HTTPS), gzip compression, and rate limiting:
+
+```nginx
+server {
+    listen 80;
+    server_name realestate.example.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+### 3. Containerization (Docker)
+
+Recommended multi-stage `Dockerfile`:
+
+```dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential libgomp1 && \
+    rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
 ```
 
 ---
 
-## Future Work
+## Troubleshooting
 
-- **API layer:** Wrap `ChatSession`, `recommend_hybrid()`, and the regression
-  pipeline in a FastAPI service for production deployment.
-- **User feedback loop:** Collect implicit signals (clicks, saves) to extend
-  the system with collaborative filtering.
-- **Approximate nearest neighbor (ANN):** Replace the pre-indexed cosine search
-  with FAISS or Annoy for real-time inference on a growing catalog.
-- **Geospatial features:** Incorporate proximity to amenities (schools, metro
-  stations) as additional recommendation signals.
-- **Automated retraining:** Schedule periodic re-runs of the clustering and CBF
-  notebooks as new listings are added.
-- **Streaming responses:** Add streaming support to `ChatSession` for a more
-  responsive chat UI experience.
+| Issue | Cause | Resolution |
+|---|---|---|
+| `ModuleNotFoundError: No module named 'xgboost'` | The model requires XGBoost inside scikit-learn. | Ensure the active environment is the project `.venv` (`.venv\Scripts\python.exe`), not global Python. |
+| `400 INVALID_ARGUMENT: thought_signature` | Gemini 3.x+ requires thought signatures across multi-turn tool calling. | Handled automatically in `src/chatbot/chat_engine.py` by preserving `p.thought_signature`. |
+| `503 Service Unavailable: Model not loaded` | The `.joblib` model file is missing or corrupted. | Verify that `models/regression/final_price_prediction_model.joblib` exists on disk. |
+| Chat replies take 10–15 seconds | Complex multi-turn property queries execute multiple tool rounds. | This is expected when the model calls `resolve_location` followed by `search_properties`. Token usage is logged in stdout. |
+| Browser CORS errors | Accessing the API from a different origin or port. | CORS is enabled for all origins in `app.py`. Alternatively, access the frontend through `http://127.0.0.1:8000/`. |
+
+---
+
+## Authors & Acknowledgments
+
+- **Project**: Egyptian Real Estate AI Platform (Machine Learning Graduation Project).
+- **Dataset**: Real-world property listings sourced from [Kaggle](https://www.kaggle.com/datasets/mohammedhassan1112/egypt-property-finder).
+- **Technologies**: Scikit-learn, XGBoost, Google Gemini, FastAPI, Uvicorn.

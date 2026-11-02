@@ -1,0 +1,18 @@
+test,status,detail
+T1: search total == breakdown total,PASS,9719 == 9719
+T2: limit capped at 10,PASS,10
+"T3: rent price_label == ""EGP / month""",PASS,{'EGP / month'}
+"T4: buy price_label == ""EGP""",PASS,{'EGP'}
+T5: image_url always 668x452,PASS,
+T6: Shop bedrooms are null (not dropped),PASS,
+T6b: Shop results not empty,PASS,2254
+T7: no unverified amenity in tool enum,PASS,set()
+T8: Penthouse rejected (unverified),PASS,
+T8b: Balcony accepted (verified),PASS,
+T9: relax_filters never changes category,PASS,commercial_rent
+T10: bedrooms not suggested for commercial,PASS,property_type
+T11: governorate filter respected,PASS,
+T12: price_period not in results,PASS,
+T12b: price_type not in results,PASS,
+"T13: total rows == 62,977",PASS,62977
+"T14: similarity in [0,1]",PASS,"[0.9858, 0.9634, 0.9467, 0.9393, 0.9387]"

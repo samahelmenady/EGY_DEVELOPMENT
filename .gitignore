@@ -43,7 +43,6 @@ ipython_config.py
 
 # ─────────────────────────────────────────────
 # Machine learning model artifacts
-# (large binary files — stored outside Git or via DVC)
 # ─────────────────────────────────────────────
 models/**/*.joblib
 models/**/*.pkl
@@ -55,17 +54,32 @@ models/**/*.pt
 models/**/*.pth
 models/**/*.onnx
 
+# Production model artifacts required for live inference
+!models/regression/final_price_prediction_model.joblib
+!models/recommendation/**
+!models/clustering/**
+!models/hybrid/**
+
 # ─────────────────────────────────────────────
 # Data files
-# (raw and processed datasets — too large for Git)
 # ─────────────────────────────────────────────
-
-*.csv
+# Ignore large intermediate files by default
+data/processed/*.csv
 *.tsv
-*.parquet
 *.feather
 *.hdf
 *.h5
+
+# Allow raw dataset
+!data/raw/
+!data/raw/*
+
+# Allow processed runtime assets required by FastAPI
+!data/processed/
+!data/processed/chat_bot/
+!data/processed/chat_bot/*
+!data/processed/recommendations/
+!data/processed/recommendations/*
 
 # ─────────────────────────────────────────────
 # Logs and output files
@@ -87,7 +101,6 @@ reports/figures/*.svg
 reports/figures/*.pdf
 reports/results/*.csv
 reports/results/*.json
-data/
 # ─────────────────────────────────────────────
 # Flask / web application
 # ─────────────────────────────────────────────
@@ -169,12 +182,19 @@ dmypy.json
 docs/_build/
 site/
 
+# Temporary exclusions before deploy branch
+Dockerfile
+.dockerignore
+docs/
+docs/**
+
 # ─────────────────────────────────────────────
 # Temporary and misc
 # ─────────────────────────────────────────────
 *.tmp
 *.temp
 *.bak
+*.bak.*
 *.swp
 *.swo
 .scratch/

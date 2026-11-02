@@ -1,0 +1,9 @@
+Model,MAE,RMSE,R²
+Polynomial Regression (degree=3),0.6145,0.9672,0.8747
+Polynomial Regression (degree=2),0.7683,1.1874,0.8111
+Polynomial Regression (degree=1),0.8308,1.2942,0.7756
+Linear Regression,0.8308,1.2942,0.7756
+Ridge Regression,0.8308,1.2942,0.7756
+Lasso Regression,0.8318,1.2946,0.7755
+"ElasticNet (alpha=0.01, l1_ratio=0.9)",0.8316,1.2946,0.7755
+Dummy Regressor (mean),2.514,2.7322,-0.0

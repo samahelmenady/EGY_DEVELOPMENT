@@ -1,0 +1,5 @@
+Model,MAE,RMSE,R2
+"XGBoost (n=300, lr=0.2, depth=5)",0.3616,0.696,0.9351
+"Gradient Boosting (n=200, lr=0.2, depth=6)",0.3584,0.6973,0.9349
+Decision Tree (max_depth=4),0.5921,0.9289,0.8844
+"AdaBoost (n=50, lr=0.01)",0.6343,0.9774,0.872

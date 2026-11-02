@@ -7,3 +7,12 @@ google-genai>=1.0
 python-dotenv>=1.0
 httpx>=0.24
 openai>=1.0  # optional — OpenAICompatibleClient falls back to httpx if absent
+
+# ── Backend server (added Phase 1) ──────────────────────────────────────────
+fastapi>=0.115
+uvicorn[standard]>=0.30
+joblib         # model serialisation (transitive scikit-learn dep, pinned explicitly)
+scikit-learn==1.9.1   # must match the version used to train final_price_prediction_model.joblib
+xgboost        # required by the StackingRegressor inside the model
+pydantic-settings>=2.0  # centralised config (core/config.py)
+aiofiles>=24.0.0        # required by FastAPI StaticFiles

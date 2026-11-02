@@ -1,0 +1,113 @@
+{
+  "AC": {
+    "name": "Central A/C",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs and platform filter UI"
+  },
+  "AN": {
+    "name": "Annex Room",
+    "verified": true,
+    "evidence": "Commercial-only (0% buy/rent, ~87% commercial). Tightly clusters with CR and DN. Apify schema confirms AN=Annex. Seen on commercial-buy office listing 7312209 (Alexandria)."
+  },
+  "BA": {
+    "name": "Balcony",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs and platform filter UI"
+  },
+  "BK": {
+    "name": "Built-in Kitchen Appliances",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  },
+  "BL": {
+    "name": "Built-in Larder",
+    "verified": true,
+    "evidence": "21,419 listings carry BOTH BA and BL simultaneously, ruling out BL=Balcony. BL is residential-only (buy/rent). Apify code list and web search confirm BL=Built-in Larder (kitchen pantry unit). PropertyFinder filter URL uses 'bl' for balcony in its UI but that conflicts with the dataset where BA is already balcony."
+  },
+  "BW": {
+    "name": "Built-in Wardrobes",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  },
+  "CO": {
+    "name": "Concierge",
+    "verified": true,
+    "evidence": "Residential-only. Co-occurs with SE (Security) in 98% of cases (15,332/15,690) — classic building-service pairing. Web search + Apify schema confirm CO=Concierge. Sample: Palm Hills New Alamein listing 2PY5y7ZgJoO."
+  },
+  "CP": {
+    "name": "Covered Parking",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs and platform filter UI"
+  },
+  "CR": {
+    "name": "Conference Room",
+    "verified": true,
+    "evidence": "Commercial-only (0% buy/rent). Clusters with AN (93%) and DN (64%). Apify schema confirms CR=Conference Room. Sample: commercial-rent office listing 8040382 (Nasr City)."
+  },
+  "DN": {
+    "name": "Dining Room",
+    "verified": true,
+    "evidence": "Commercial-only (0% buy/rent). Clusters tightly with CR (93%) and AN (92%). Apify schema confirms DN=Dining Room. Consistent across DN-only sample listing 7967672 (Mohandessin)."
+  },
+  "LB": {
+    "name": "Lobby in Building",
+    "verified": true,
+    "evidence": "Cross-category (residential + commercial), very high frequency (37,029). Web search returns PropertyFinder's own filter label 'Lobby in Building' for this code. Sample: Eastown commercial listing 2PSznUHgNrE."
+  },
+  "MR": {
+    "name": "Maid's Room",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  },
+  "PG": {
+    "name": "Private Garden",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  },
+  "PN": {
+    "name": "Penthouse",
+    "verified": false,
+    "evidence": "Only 1 listing in dataset (commercial-rent office). Web search suggests PN=Private Pool in some schemas, but Private Pool is already PP. More likely PN=Penthouse (unit type tag mis-classified as amenity) or a data entry error. Cannot verify with 1 data point."
+  },
+  "PP": {
+    "name": "Private Pool",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  },
+  "SE": {
+    "name": "Security",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs and platform filter UI"
+  },
+  "SP": {
+    "name": "Shared Pool",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  },
+  "SS": {
+    "name": "Shared Sauna",
+    "verified": true,
+    "evidence": "Residential-only. Co-occurs with SY (Shared Gym) in 77% of cases and with SP+SY together in 77%. Leisure cluster: SP=pool, SY=gym, SS=sauna. Web search confirms PropertyFinder uses 'Shared Sauna' as filter label. Sample: Palm Hills listing 2PXrZRDbhNw."
+  },
+  "ST": {
+    "name": "Storage Room",
+    "verified": true,
+    "evidence": "Residential-only. Co-occurs with WC (Walk-in Closet) in 79% of cases and BK (Kitchen) in 68%. Storage room is a unit-level feature matching this pattern. Apify schema and web search confirm ST=Storage Room (sometimes listed as Study, but Storage is more consistent with co-occurrence pattern)."
+  },
+  "SY": {
+    "name": "Shared Gym",
+    "verified": true,
+    "evidence": "Cross-category. Co-occurs with SP (Shared Pool) in 58% of cases — leisure cluster. Web search confirms PropertyFinder filter label 'Shared Gym'. Apify schema confirms SY=Shared Gym. Sample: Eastown commercial listing 8686259."
+  },
+  "VW": {
+    "name": "View",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  },
+  "WC": {
+    "name": "Walk-in Closet",
+    "verified": true,
+    "evidence": "Standard PropertyFinder code, confirmed by Apify schema docs"
+  }
+}
+

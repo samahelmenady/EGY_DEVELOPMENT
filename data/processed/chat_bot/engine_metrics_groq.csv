@@ -1,0 +1,9 @@
+session_id,turn,user_message,tool_rounds,tool_calls,properties_returned,grounding_warn,prompt_tokens,candidates_tokens,total_tokens,turn_ms
+smoke-01,1,Show me apartments for rent in Giza,3,3,5,False,11097,427,11524,5155.03
+multi-en,1,I am looking for an apartment to buy in New Cairo,2,2,0,True,7139,310,7449,26169.1
+multi-en,2,Budget around 3 million EGP,0,0,0,False,2979,190,3169,1127.75
+multi-en,3,I want 3 bedrooms,2,2,5,False,10637,385,11022,79477.78
+multi-ar,1,عايز شقة للإيجار في مدينة نصر,2,2,0,False,7142,241,7383,47114.9
+multi-ar,2,ميزانيتي 8000 جنيه في الشهر,2,2,5,False,10404,276,10680,42294.86
+multi-ar,3,عايزها 2 أوضة نوم,2,2,5,False,13171,646,13817,27636.75
+relax-01,1,"Show me villas for sale in Alexandria with 10 bedrooms, price under 500,000 EGP, must have swimming pool, gym, and rooft",1,1,0,True,4247,1064,5311,3292.98

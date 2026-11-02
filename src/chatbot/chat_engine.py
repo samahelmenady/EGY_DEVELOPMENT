@@ -155,8 +155,8 @@ class GeminiClient(LLMClient):
         HTTP timeout in seconds for each API call.
     """
 
-    _MAX_RETRIES = 3
-    _RETRY_BASE_DELAY = 2.0   # seconds; doubles each retry
+    _MAX_RETRIES = 5
+    _RETRY_BASE_DELAY = 1.5   # seconds; doubles each retry (1.5s, 3s, 6s, 12s)
 
     def __init__(self, api_key: str, model_name: str, timeout: float = 60.0) -> None:
         if not api_key:
@@ -229,7 +229,6 @@ class GeminiClient(LLMClient):
             #     direct `_generate_content()` path with no AFC iteration.
             automatic_function_calling=t.AutomaticFunctionCallingConfig(
                 disable=True,
-                maximum_remote_calls=0,
             ),
             # Wire the per-request timeout through the SDK's HttpOptions.
             # `self._timeout` is stored in seconds; HttpOptions.timeout is in ms.
@@ -240,32 +239,58 @@ class GeminiClient(LLMClient):
             max_output_tokens=kwargs.get("max_output_tokens", 2048),
         )
 
-        last_exc: Exception | None = None
-        for attempt in range(self._MAX_RETRIES):
-            try:
-                response = self._client.models.generate_content(
-                    model=self._model_name,
-                    contents=sdk_contents,
-                    config=config,
-                )
-                return self._normalize_response(response)
-            except Exception as exc:  # noqa: BLE001
-                last_exc = exc
-                err_str = str(exc).lower()
-                is_transient = any(
-                    k in err_str
-                    for k in ("429", "rate", "quota", "503", "timeout", "deadline")
-                )
-                if not is_transient or attempt == self._MAX_RETRIES - 1:
-                    raise
-                delay = self._RETRY_BASE_DELAY * (2 ** attempt)
-                logger.warning(
-                    "Gemini API transient error (attempt %d/%d): %s — retrying in %.1fs",
-                    attempt + 1, self._MAX_RETRIES, exc, delay,
-                )
-                time.sleep(delay)
+        candidate_models = list(dict.fromkeys([
+            self._model_name,
+            "gemini-3.5-flash-lite",
+            "gemini-flash-lite-latest",
+            "gemini-3.5-flash",
+        ]))
 
-        raise last_exc  # type: ignore[misc]
+        last_exc: Exception | None = None
+        for m_idx, current_model in enumerate(candidate_models):
+            for attempt in range(self._MAX_RETRIES):
+                try:
+                    response = self._client.models.generate_content(
+                        model=current_model,
+                        contents=sdk_contents,
+                        config=config,
+                    )
+                    return self._normalize_response(response)
+                except Exception as exc:  # noqa: BLE001
+                    last_exc = exc
+                    err_str = str(exc).lower()
+                    is_transient = any(
+                        k in err_str
+                        for k in ("429", "rate", "quota", "503", "unavailable", "high demand", "timeout", "deadline")
+                    )
+                    has_fallback = m_idx < len(candidate_models) - 1
+
+                    # If model is overloaded or unavailable and we have a fallback, switch immediately
+                    if ("503" in err_str or "high demand" in err_str or "unavailable" in err_str) and has_fallback:
+                        logger.warning(
+                            "Gemini model '%s' is unavailable/overloaded (%s). Switching to fallback '%s'...",
+                            current_model, exc, candidate_models[m_idx + 1],
+                        )
+                        break
+
+                    if not is_transient or attempt == self._MAX_RETRIES - 1:
+                        if has_fallback:
+                            logger.warning(
+                                "Gemini model '%s' failed (%s). Switching to fallback '%s'...",
+                                current_model, exc, candidate_models[m_idx + 1],
+                            )
+                            break
+                        raise
+
+                    delay = self._RETRY_BASE_DELAY * (2 ** attempt)
+                    logger.warning(
+                        "Gemini API transient error on '%s' (attempt %d/%d): %s — retrying in %.1fs",
+                        current_model, attempt + 1, self._MAX_RETRIES, exc, delay,
+                    )
+                    time.sleep(delay)
+
+        if last_exc:
+            raise last_exc
 
     # ------------------------------------------------------------------
     # Private helpers
@@ -544,15 +569,17 @@ class GeminiClient(LLMClient):
             if p_type == "text":
                 parts.append(t.Part(text=part["text"]))
             elif p_type == "function_call":
-                parts.append(
-                    t.Part(
-                        function_call=t.FunctionCall(
-                            name=part["name"],
-                            args=part.get("args", {}),
-                            id=part.get("id"),
-                        )
+                part_obj = t.Part(
+                    function_call=t.FunctionCall(
+                        name=part["name"],
+                        args=part.get("args", {}),
+                        id=part.get("id"),
                     )
                 )
+                # Replay thought_signature if present (required by Gemini 3.x+)
+                if part.get("thought_signature"):
+                    part_obj.thought_signature = part["thought_signature"]
+                parts.append(part_obj)
             elif p_type == "function_response":
                 parts.append(
                     t.Part(
@@ -566,21 +593,30 @@ class GeminiClient(LLMClient):
         return t.Content(role=role, parts=parts)
 
     def _normalize_response(self, response) -> dict:
-        """Convert a GenerateContentResponse to the internal dict format."""
+        """Convert a GenerateContentResponse to the internal dict format.
+
+        Note: ``thought_signature`` is preserved on function-call parts so that
+        it can be replayed in ``_to_sdk_content`` when the history is sent back
+        to the model. Newer Gemini models (gemini-3.x and later) require the
+        original signature; omitting it causes a 400 INVALID_ARGUMENT error on
+        the second and subsequent turns.
+        """
         parts: list[dict] = []
         candidate = response.candidates[0] if response.candidates else None
         if candidate and candidate.content:
             for p in candidate.content.parts:
                 if p.function_call:
                     fc = p.function_call
-                    parts.append(
-                        {
-                            "type": "function_call",
-                            "name": fc.name,
-                            "args": dict(fc.args) if fc.args else {},
-                            "id": fc.id or str(uuid.uuid4()),
-                        }
-                    )
+                    part_dict: dict = {
+                        "type": "function_call",
+                        "name": fc.name,
+                        "args": dict(fc.args) if fc.args else {},
+                        "id": fc.id or str(uuid.uuid4()),
+                    }
+                    # Preserve thought_signature (required by Gemini 3.x+)
+                    if p.thought_signature:
+                        part_dict["thought_signature"] = p.thought_signature
+                    parts.append(part_dict)
                 elif p.text:
                     parts.append({"type": "text", "text": p.text})
 
@@ -772,8 +808,12 @@ class ChatSession:
         # Metrics per turn
         self.metrics: list[dict] = []
 
-        # Build system prompt
-        from src.chatbot.prompts import SYSTEM_PROMPT, user_profile_section
+        # Build system prompt (dynamically reload prompts to reflect updates)
+        import importlib
+        import src.chatbot.prompts as _prompts_mod
+        importlib.reload(_prompts_mod)
+        SYSTEM_PROMPT = _prompts_mod.SYSTEM_PROMPT
+        user_profile_section = _prompts_mod.user_profile_section
 
         profile_block = user_profile_section(self.user_profile)
         self._system_prompt: str = (
@@ -812,6 +852,24 @@ class ChatSession:
             ``turn_ms``         : float — total wall-clock time for this turn (ms)
         """
         turn_start = time.perf_counter()
+
+        # Track category and filters in self.state from user messages
+        msg_norm = user_message.lower().strip()
+        if "سكني" in msg_norm and ("شراء" in msg_norm or "buy" in msg_norm):
+            self.state["category"] = "buy"
+        elif "سكني" in msg_norm and ("إيجار" in msg_norm or "ايجار" in msg_norm or "rent" in msg_norm):
+            self.state["category"] = "rent"
+        elif "تجاري" in msg_norm and ("شراء" in msg_norm or "buy" in msg_norm):
+            self.state["category"] = "commercial_buy"
+        elif "تجاري" in msg_norm and ("إيجار" in msg_norm or "ايجار" in msg_norm or "rent" in msg_norm):
+            self.state["category"] = "commercial_rent"
+        elif msg_norm in ("سكني", "شراء"):
+            if "category" not in self.state:
+                self.state["category"] = "buy"
+        elif msg_norm in ("تجاري",):
+            if "category" not in self.state:
+                self.state["category"] = "commercial_buy"
+
         self._history.append({"role": "user", "parts": [{"type": "text", "text": user_message}]})
 
         tool_call_log: list[dict] = []
@@ -913,10 +971,14 @@ class ChatSession:
         if len(self._history) > max_items:
             self._history = self._history[-max_items:]
 
-        # Extract properties from last search_properties result
+        # Extract properties from last search_properties result (limit to 2 as requested)
         properties: list[dict] = []
+        total_matches: int | None = None
+        applied_filters: dict = {}
         if last_search_result and "results" in last_search_result:
-            properties = last_search_result["results"]
+            properties = last_search_result["results"][:2]
+            total_matches = last_search_result.get("total_matches", len(last_search_result["results"]))
+            applied_filters = last_search_result.get("applied_filters", {})
 
         # suggest_next_question
         suggestions: list[str] = []
@@ -924,7 +986,7 @@ class ChatSession:
             from src.chatbot.tools import suggest_next_question
 
             sq_result = suggest_next_question(filters=self.state)
-            suggestions = sq_result.get("suggestions", [])
+            suggestions = [opt["value"] for opt in sq_result.get("options", [])]
         except Exception as exc:  # noqa: BLE001
             logger.debug("suggest_next_question failed (non-fatal): %s", exc)
 
@@ -944,6 +1006,8 @@ class ChatSession:
             "tool_calls": tool_call_log,
             "properties": properties,
             "suggestions": suggestions,
+            "total_matches": total_matches,
+            "applied_filters": applied_filters,
             "grounding_warn": grounding_warn,
             "usage": total_usage,
             "turn_ms": round(turn_ms, 2),

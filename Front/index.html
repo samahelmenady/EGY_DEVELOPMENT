@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="ar-EG-u-nu-latn" dir="rtl" data-theme="light">
+
+<head>
+  <script>window.addEventListener("error", function (e) { console.error("GLOBAL ERROR CAUGHT: " + e.message + " at line " + e.lineno + ":" + e.colno + "\n" + (e.error ? e.error.stack : "no stack")); });</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EGY DEVELOPMENT — AI Real Estate Platform</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Cinzel:wght@600;700;800;900&family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=6.0">
+  <style>
+    .pred-submit-wrap {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+      align-items: stretch !important;
+      width: 100% !important;
+      margin-top: 12px !important;
+    }
+    .pred-submit-wrap button,
+    .pred-gold-btn,
+    .pred-secondary-btn {
+      width: 100% !important;
+      flex: none !important;
+      box-sizing: border-box !important;
+      margin: 0 !important;
+    }
+  </style>
+  <style>
+    .hero-search-center {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 18px auto 0;
+      width: 100%;
+    }
+
+    .hero-search-btn {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      padding: 10px 38px !important;
+      font-size: 0.95rem !important;
+      font-weight: 800 !important;
+      border-radius: 999px !important;
+      border: none !important;
+      text-decoration: none !important;
+      cursor: pointer !important;
+      background: linear-gradient(135deg, #e2a62f 0%, #c88a1a 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 18px rgba(223, 161, 39, 0.35) !important;
+      transition: all 0.25s ease !important;
+      font-family: inherit !important;
+    }
+
+    .hero-search-btn i {
+      font-size: 0.92rem !important;
+      color: #ffffff !important;
+      transition: transform 0.2s ease !important;
+    }
+
+    .hero-search-btn:hover {
+      filter: brightness(1.08) !important;
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 24px rgba(223, 161, 39, 0.48) !important;
+      color: #ffffff !important;
+    }
+
+    .hero-search-btn:hover i {
+      transform: scale(1.15) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <header class="nav">
+    <div class="nav-in">
+      <a href="#home" class="brand" aria-label="EGY Development">
+        <div class="brand-box">
+          <img src="assets/logo/logo-light.png" alt="EGY" class="logo-img logo-light">
+          <img src="assets/logo/logo-dark.png" alt="EGY" class="logo-img logo-dark">
+          <span class="brand-sub">DEVELOPMENT</span>
+        </div>
+      </a>
+      <nav id="menu" aria-label="Main">
+        <a href="#home" data-i18n="nav_home">الرئيسية</a>
+        <a href="#recommend" data-i18n="nav_rec">التوصيات</a>
+        <a href="#predict" data-i18n="nav_pred">توقع السعر</a>
+        <a href="#chat" data-i18n="nav_chat">المساعد الذكي</a>
+        <a href="#properties" data-i18n="nav_props">تفضيلات المستخدم</a>
+      </nav>
+      <div class="tools">
+        <button id="theme" class="toggle" aria-label="Toggle theme"><i class="fa-solid fa-sun"></i><i
+            class="fa-solid fa-moon"></i></button>
+        <button id="lang" class="nav-lang-btn" aria-label="Switch language">English</button>
+        <span class="nav-spacer"></span>
+        <div class="nav-auth-user" id="nav-user-container">
+          <button class="nav-auth-btn" id="auth-btn" data-i18n="sign_in">تسجيل الدخول</button>
+          <button class="user-account-btn" id="user-menu-btn" aria-label="User Account" title="الحساب الشخصي">
+            <i class="fa-regular fa-user"></i>
+          </button>
+          <div class="nav-user-dropdown" id="nav-user-dropdown">
+            <div class="nav-user-head">
+              <div class="nav-user-avatar"><i class="fa-solid fa-user-check"></i></div>
+              <div>
+                <b class="nav-user-name" data-i18n="user_guest">ضيف المنصة</b>
+                <span class="nav-user-role" data-i18n="user_role">مستخدم نشط</span>
+              </div>
+            </div>
+            <div class="nav-user-divider"></div>
+            <a href="#properties" class="nav-user-link" onclick="switchPropertiesTab('fav')">
+              <i class="fa-solid fa-heart" style="color:#ef4444"></i>
+              <span data-i18n="tab_props_fav">العقارات المفضلة</span>
+            </a>
+            <a href="#recommend" class="nav-user-link">
+              <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--pri)"></i>
+              <span data-i18n="nav_rec">التوصيات العقارية</span>
+            </a>
+            <a href="#predict" class="nav-user-link">
+              <i class="fa-solid fa-chart-line" style="color:#10b981"></i>
+              <span data-i18n="nav_pred">توقع الأسعار</span>
+            </a>
+            <div class="nav-user-divider"></div>
+            <button type="button" class="nav-user-link signin-opt" id="nav-dropdown-auth-btn">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              <span data-i18n="sign_in">تسجيل الدخول</span>
+            </button>
+          </div>
+        </div>
+        <button id="burger" class="user burger" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== 1. LANDING ===== -->
+    <section class="view show" id="home">
+      <div class="hero-section">
+        <div class="hero ph" style="--img:url('assets/1.jpeg')">
+          <div class="hero-in">
+            <h1 data-i18n="h_title">Find Your Perfect Property in Egypt</h1>
+            <p data-i18n="h_sub">AI-powered recommendations, accurate price predictions, and thousands of real estate
+              listings across Egypt.</p>
+          </div>
+          <div class="hero-search-center">
+            <a href="#recommend" class="hero-search-btn" id="hero-explore-btn">
+              <i class="fa-solid fa-magnifying-glass rec-search-icon"></i>
+              <span data-i18n="btn_recommend_search">البحث عن أفضل التوصيات</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="feats-wrap">
+        <div class="feats-grid">
+          <!-- 1. AI Recommendations -->
+          <a class="feat-banner" href="#recommend"
+            style="--feat-img:url('https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=900&q=80')">
+            <div class="feat-bg"></div>
+            <div class="feat-content">
+              <span class="feat-tag"><i class="fa-solid fa-cube"></i> <span data-i18n="tag_rec">Smart
+                  Match</span></span>
+              <h3 data-i18n="feat_rec_t">AI Recommendations</h3>
+              <p data-i18n="feat_rec_d">Find properties that match your preferences</p>
+            </div>
+            <span class="feat-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- 2. Price Prediction -->
+          <a class="feat-banner" href="#predict"
+            style="--feat-img:url('https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80')">
+            <div class="feat-bg"></div>
+            <div class="feat-content">
+              <span class="feat-tag"><i class="fa-solid fa-chart-simple"></i> <span data-i18n="tag_pred">ML
+                  Valuation</span></span>
+              <h3 data-i18n="feat_pred_t">Price Prediction</h3>
+              <p data-i18n="feat_pred_d">Get AI-powered price estimates</p>
+            </div>
+            <span class="feat-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- 3. AI Assistant -->
+          <a class="feat-banner" href="#chat"
+            style="--feat-img:url('https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80')">
+            <div class="feat-bg"></div>
+            <div class="feat-content">
+              <span class="feat-tag"><i class="fa-regular fa-comments"></i> <span data-i18n="tag_chat">AI
+                  Assistant</span></span>
+              <h3 data-i18n="feat_chat_t">Conversational Assistant</h3>
+              <p data-i18n="feat_chat_d">Ask anything about Egyptian real estate</p>
+            </div>
+            <span class="feat-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+
+          <!-- 4. 60K+ Properties -->
+          <a class="feat-banner" href="#recommend"
+            style="--feat-img:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80')">
+            <div class="feat-bg"></div>
+            <div class="feat-content">
+              <span class="feat-tag"><i class="fa-regular fa-building"></i> <span data-i18n="tag_props">Live
+                  Database</span></span>
+              <h3 data-i18n="feat_props_t">60K+ Properties</h3>
+              <p data-i18n="feat_props_d">Explore listings across all governorates</p>
+            </div>
+            <span class="feat-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+          </a>
+        </div>
+      </div>
+      <div class="wrap">
+        <h2 class="sec" data-i18n="how_title">How it works</h2>
+        <div class="grid g3">
+          <div class="card">
+            <h3 data-i18n="how_1_t">1. Share your preferences</h3>
+            <p data-i18n="how_1_d">Set budget, area, size and must-have amenities.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="how_2_t">2. Review matched homes</h3>
+            <p data-i18n="how_2_d">See each match with a similarity score and the reasons behind it.</p>
+          </div>
+          <div class="card">
+            <h3 data-i18n="how_3_t">3. Contact the owner</h3>
+            <p data-i18n="how_3_d">Message the listing owner directly and arrange a viewing.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 2. USER PREFERENCES (FAVORITES) ===== -->
+    <section class="view" id="properties">
+      <div class="props-page-wrap">
+        <!-- Header Hero Section with Title & Badge -->
+        <div class="fav-header-flex">
+          <div class="fav-header-text">
+            <h1 class="page-t fav-main-title" data-i18n="nav_props">تفضيلات المستخدم</h1>
+            <p class="muted fav-main-sub" data-i18n="fav_section_sub">العقارات التي قمت بتمييزها برمز القلب للرجوع إليها ومقارنتها والتواصل مع الملاك.</p>
+          </div>
+          <div class="fav-count-badge">
+            <span id="fav-count-pill" class="fav-pill-num">0</span>
+            <span class="fav-count-lbl" data-i18n="lbl_saved_props">عقارات محفوظة</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#ef4444" stroke="#ef4444" style="flex-shrink:0;"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+        </div>
+
+
+        <!-- Filter & Search Toolbar (شريط التصفية والبحث) -->
+        <div class="fav-toolbar-row">
+          <div class="fav-filter-pills" id="fav-type-filters">
+            <button type="button" class="fav-pill-btn on" data-filter="all" id="pill-fav-all">
+              <span data-i18n="pill_all">الكل</span> (<span id="fav-type-all-count">0</span>)
+            </button>
+            <button type="button" class="fav-pill-btn" data-filter="Apartment" data-i18n="pill_apartments">شقق</button>
+            <button type="button" class="fav-pill-btn" data-filter="Villa" data-i18n="pill_villas">فيلات</button>
+            <button type="button" class="fav-pill-btn" data-filter="Chalet" data-i18n="pill_chalets">شاليهات</button>
+          </div>
+
+          <div class="fav-search-wrap">
+            <input type="text" id="fav-search-input" placeholder="ابحث في العقارات المحفوظة..." aria-label="Search saved properties" data-i18n-ph="fav_search_ph">
+          </div>
+
+          <div class="fav-sort-wrap">
+            <select id="fav-sort-select" class="fav-sort-select" aria-label="Sort properties">
+              <option value="recent" data-i18n="fav_sort_recent">الأحدث حفظاً</option>
+              <option value="price_asc" data-i18n="fav_sort_price_asc">السعر: من الأقل للأعلى</option>
+              <option value="price_desc" data-i18n="fav_sort_price_desc">السعر: من الأعلى للأقل</option>
+              <option value="size_desc" data-i18n="fav_sort_size_desc">المساحة: الأكبر أولاً</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Luxury Favorites Grid (3 Columns Matching Exact Design) -->
+        <div id="fav-props-grid" class="grid g3 fav-props-grid"></div>
+
+        <!-- Empty State (When no properties favorited) -->
+        <div id="fav-empty-state" class="fav-empty-state" style="display:none">
+          <div class="fav-empty-icon"><i class="fa-regular fa-heart"></i></div>
+          <h3 data-i18n="fav_empty_t">لا توجد عقارات في تفضيلاتك حالياً</h3>
+          <p data-i18n="fav_empty_d">انقر على رمز القلب ❤️ على أي عقار في صفحة التوصيات لإضافته إلى تفضيلاتك المحفوظة والرجوع إليه في أي وقت.</p>
+          <div class="fav-empty-btn-wrap" style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+            <button type="button" class="btn ghost" onclick="addDemoFavorites()" style="border-radius: 9999px; padding: 10px 22px; font-weight: 700; border-color: #d49b29; color: #b8821a;">
+              <i class="fa-solid fa-heart" style="color: #ef4444; margin-left: 6px;"></i>
+              <span data-i18n="btn_demo_fav">إضافة 3 عقارات مميزة للتجربة السريعة</span>
+            </button>
+            <a href="#recommend" class="btn">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span data-i18n="btn_explore_rec_text">استكشاف التوصيات وإضافة عقارات</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 3. PROPERTY DETAILS (NEW MODERN DESIGN) ===== -->
+    <section class="view" id="details">
+      <div class="wrap det-page-wrap">
+        
+        <!-- Clean Breadcrumb Navigation -->
+        <nav class="det-breadcrumb-nav">
+          <a href="#recommend" class="det-back-btn" id="crumb-back-link">
+            <i class="fa-solid fa-arrow-right det-back-icon"></i>
+            <span data-i18n="nav_rec">التوصيات</span>
+          </a>
+          <span class="det-crumb-divider">/</span>
+          <span class="det-crumb-title" id="crumb-prop">Modern Apartment</span>
+        </nav>
+
+        <!-- Top Section: 2 Columns Side-by-Side (Gallery on Right, Info on Left in RTL) -->
+        <div class="det-hero-layout det-hero-grid">
+          
+          <!-- Column 1 (Right in RTL, Left in LTR): Gallery Carousel & Thumbnails -->
+          <div class="det-gallery-col">
+            <div class="det-main-frame">
+              <img id="det-main-img" class="det-main-img" src="" alt="Property Photo">
+              <button type="button" class="det-nav-arrow det-arrow-prev" id="det-prev-btn" aria-label="Previous photo">
+                <i class="fa-solid fa-chevron-left"></i>
+              </button>
+              <button type="button" class="det-nav-arrow det-arrow-next" id="det-next-btn" aria-label="Next photo">
+                <i class="fa-solid fa-chevron-right"></i>
+              </button>
+              <div class="det-counter-pill" id="det-counter">1/10</div>
+            </div>
+            <div class="det-thumbnails-grid" id="det-thumbs-container">
+              <!-- Thumbnails injected via JS -->
+            </div>
+          </div>
+
+          <!-- Column 2 (Left in RTL, Right in LTR): Property Info & Specs & Actions -->
+          <div class="det-info-col">
+            <!-- Badges Row -->
+            <div class="det-badges-row">
+              <span class="det-badge det-badge-sale" id="det-cat-badge">للبيع</span>
+              <span class="det-badge det-badge-type" id="det-type-badge">Apartment</span>
+              <span class="det-badge det-badge-status" id="det-status-badge">جاهز للاستلام</span>
+            </div>
+
+            <!-- Title (dir=auto and plaintext prevents punctuation flip) -->
+            <h1 class="det-title" id="det-title" dir="auto">Ready to move garden apt 140 sqm, 8 years plan</h1>
+
+            <!-- Location with dot -->
+            <p class="det-location">
+              <span class="det-loc-bullet">•</span>
+              <span id="det-loc" dir="auto">Mountain View iCity, 5th Settlement Compounds, New Cairo City, Cairo</span>
+            </p>
+
+            <!-- Price & Payment Plan -->
+            <div class="det-price-block">
+              <span class="det-price-num" id="det-price">800,000</span>
+              <span class="det-price-curr" id="det-curr">جنيه</span>
+              <span class="det-payment-plan" id="det-plan">خطة سداد 8 سنوات</span>
+            </div>
+
+            <!-- 4 Spec Boxes in a clean horizontal row -->
+            <div class="det-specs-boxes">
+              <div class="det-spec-box">
+                <strong class="det-spec-val" id="det-spec-beds">2</strong>
+                <span class="det-spec-label" id="det-lbl-beds">غرف نوم</span>
+              </div>
+              <div class="det-spec-box">
+                <strong class="det-spec-val" id="det-spec-baths">2</strong>
+                <span class="det-spec-label" id="det-lbl-baths">حمام</span>
+              </div>
+              <div class="det-spec-box">
+                <strong class="det-spec-val" id="det-spec-size">140</strong>
+                <span class="det-spec-label" id="det-lbl-size" data-i18n="unit_sqm">م²</span>
+              </div>
+              <div class="det-spec-box">
+                <strong class="det-spec-val" id="det-spec-type">شقة</strong>
+                <span class="det-spec-label" id="det-lbl-type">النوع</span>
+              </div>
+            </div>
+
+            <!-- Match Card with EGY Avatar (Text on Right, Badge on Left in RTL) -->
+            <div class="det-match-box">
+              <div class="det-match-content">
+                <strong class="det-match-title" id="det-match-title">ملاءمة لك 94%</strong>
+                <p class="det-match-desc" id="det-match-desc">السعر أقل من العقارات المشابهة، وقريب من المدارس.</p>
+              </div>
+              <div class="det-match-avatar">EGY</div>
+            </div>
+
+            <!-- Action Buttons (Contact on Right, Favorite on Left in RTL) -->
+            <div class="det-actions-row">
+              <button type="button" class="det-btn-contact" id="det-contact-btn">
+                <span data-i18n="det_contact">تواصل مع المالك</span>
+              </button>
+              <button type="button" class="det-btn-fav" id="det-fav-btn">
+                <i class="fa-regular fa-heart"></i>
+                <span data-i18n="det_save">في المفضلة</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Modern Tabs -->
+        <div class="det-tabs-nav tabs">
+          <button type="button" class="on" data-tab="t1" data-i18n="tab_overview">نظرة عامة</button>
+          <button type="button" data-tab="t2" data-i18n="tab_amenities">المرافق</button>
+          <button type="button" data-tab="t4" data-i18n="tab_similar">عقارات مشابهة</button>
+        </div>
+
+        <!-- Tab 1: Overview (Description + Smart Price Analysis side-by-side) -->
+        <div class="tp show" id="t1">
+          <div class="det-overview-layout det-overview-grid">
+            <!-- Card 1 (Right in RTL): Description -->
+            <div class="det-desc-card">
+              <h3 class="det-section-heading" data-i18n="det_desc_t">الوصف</h3>
+              <p class="det-desc-text" id="det-full-desc">
+                شقة جاهزة للاستلام بحديقة خاصة داخل كمبوند Mountain View iCity بالتجمع الخامس، بخطة سداد على 8 سنوات.
+              </p>
+            </div>
+
+            <!-- Card 2 (Left in RTL): Smart Price Analysis -->
+            <div class="det-price-eval-card">
+              <h3 class="det-section-heading" data-i18n="det_price_eval_title">تحليل السعر الذكي</h3>
+              <div class="det-eval-gauge-wrap">
+                <div class="det-eval-gauge-bar">
+                  <div class="det-eval-thumb" id="det-eval-thumb" style="left: 45%;"></div>
+                </div>
+                <div class="det-eval-labels">
+                  <span data-i18n="lbl_eval_low">أقل</span>
+                  <span data-i18n="lbl_eval_high">أعلى</span>
+                </div>
+              </div>
+              <strong class="det-eval-summary" id="det-eval-summary">سعر عادل • ثقة 82%</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Amenities -->
+        <div class="tp" id="t2">
+          <div class="det-amenities-wrap" id="det-amenities-container">
+            <ul class="chips det-amenities-chips" id="det-amenities-chips"></ul>
+          </div>
+        </div>
+
+        <!-- Tab 3: Similar Properties -->
+        <div class="tp" id="t4">
+          <div class="grid g3" id="det-similar-grid" data-cards="3" data-off="3"></div>
+        </div>
+
+      </div>
+    
+    </section>
+
+    <!-- ===== 4. RECOMMENDATIONS (ALL PROPERTIES CATALOG) ===== -->
+    <section class="view" id="recommend">
+      <div class="props-page-wrap">
+        <!-- Header Hero Section with Title -->
+        <div class="props-hero-header">
+          <h1 class="page-t props-main-title" data-i18n="nav_rec">التوصيات</h1>
+          <p class="muted props-main-sub" data-i18n="rec_search_sub">استكشف آلاف العقارات والكمبوندات الموصى بها في جميع
+            المحافظات، وابحث بالكمبوند، الموقع، أو المطور العقاري.</p>
+        </div>
+
+        <!-- Modern Floating Recommendation Filter Bar (Matching Mockup) -->
+        <div class="rec-filter-card">
+          <form id="rec-filter-form" class="rec-filter-flow">
+
+            <!-- Category Selection Bar -->
+            <div class="rec-cats-card">
+              <div class="rec-cats-grid" id="rec-cat-group">
+                <button type="button" class="rec-cat-btn active" data-cat="all">
+                  <i class="fa-solid fa-shapes"></i>
+                  <span data-i18n="cat_all">الكل</span>
+                </button>
+                <button type="button" class="rec-cat-btn" data-cat="buy">
+                  <i class="fa-solid fa-house"></i>
+                  <span data-i18n="cat_buy">سكني - شراء</span>
+                </button>
+                <button type="button" class="rec-cat-btn" data-cat="rent">
+                  <i class="fa-solid fa-house-chimney"></i>
+                  <span data-i18n="cat_rent">سكني - إيجار</span>
+                </button>
+                <button type="button" class="rec-cat-btn" data-cat="commercial_buy">
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <span data-i18n="cat_comm_buy">تجاري - شراء</span>
+                </button>
+                <button type="button" class="rec-cat-btn" data-cat="commercial_rent">
+                  <i class="fa-solid fa-tag"></i>
+                  <span data-i18n="cat_comm_rent">تجاري - إيجار</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Property Type & Location Side-by-Side Cards -->
+            <div class="rec-dual-grid">
+
+              <!-- Property Type Card -->
+              <div class="rec-section-card">
+                <div class="rec-card-header">
+                  <h3 class="rec-card-title" data-i18n="lbl_prop_type">نوع العقار</h3>
+                  <p class="rec-card-sub" data-i18n="sub_prop_type">اختر تصنيف العقار بدقة لتقديم أفضل التوصيات</p>
+                </div>
+                <div class="rec-select-wrap">
+                  <select id="rec-prop-type" class="rec-custom-select" aria-label="نوع العقار">
+                    <!-- Populated dynamically based on category -->
+                  </select>
+                </div>
+              </div>
+
+              <!-- Location Card -->
+              <div class="rec-section-card">
+                <div class="rec-card-header">
+                  <h3 class="rec-card-title" data-i18n="lbl_loc">الموقع الجغرافي</h3>
+                  <p class="rec-card-sub" data-i18n="sub_loc">اختر المدينة أو المنطقة في مصر</p>
+                </div>
+                <div class="rec-select-wrap">
+                  <select id="rec-city-select" class="rec-custom-select" aria-label="الموقع الجغرافي">
+                    <!-- Populated dynamically with the 8 cities -->
+                  </select>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Specifications & Amenities Card -->
+            <div class="rec-section-card">
+              <div class="rec-card-header">
+                <h3 class="rec-card-title" data-i18n="lbl_specs_cond">المواصفات والحقول المشروطة</h3>
+                <p class="rec-card-sub" data-i18n="sub_specs_cond">حدد مساحة العقار والغرف والموقع الجغرافي والمرافق
+                  المطلوبة</p>
+              </div>
+
+              <div class="rec-specs-grid">
+                <!-- Budget (EGP) -->
+                <div class="rec-spec-box">
+                  <label for="rec-budget-select" class="rec-input-label">
+                    <span data-i18n="lbl_budget_egp">الميزانية (جنيه مصري)</span>
+                  </label>
+                  <div class="rec-select-wrap">
+                    <select id="rec-budget-select" class="rec-custom-select" aria-label="الميزانية">
+                      <!-- Dynamic options populated based on category (buy vs rent) -->
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Size (m²) -->
+                <div class="rec-spec-box">
+                  <label for="rec-size-select" class="rec-input-label">
+                    <span data-i18n="lbl_size_m2">المساحة (م²)</span>
+                  </label>
+                  <div class="rec-select-wrap">
+                    <select id="rec-size-select" class="rec-custom-select" aria-label="المساحة">
+                      <!-- Dynamic size range options -->
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Bedrooms -->
+                <div class="rec-spec-box">
+                  <label for="rec-beds-select" class="rec-input-label">
+                    <span data-i18n="lbl_beds">عدد غرف النوم</span>
+                  </label>
+                  <div class="rec-select-wrap">
+                    <select id="rec-beds-select" class="rec-custom-select" aria-label="عدد غرف النوم">
+                      <option value="all" data-i18n="opt_all" selected>الكل</option>
+                      <option value="1">1 غرفة</option>
+                      <option value="2">2 غرف</option>
+                      <option value="3">3 غرف</option>
+                      <option value="4">4 غرف</option>
+                      <option value="5">+5 غرف</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Bathrooms -->
+                <div class="rec-spec-box">
+                  <label for="rec-baths-select" class="rec-input-label">
+                    <span data-i18n="lbl_baths">عدد الحمامات</span>
+                  </label>
+                  <div class="rec-select-wrap">
+                    <select id="rec-baths-select" class="rec-custom-select" aria-label="عدد الحمامات">
+                      <option value="all" data-i18n="opt_all" selected>الكل</option>
+                      <option value="1">1 حمام</option>
+                      <option value="2">2 حمام</option>
+                      <option value="3">3 حمامات</option>
+                      <option value="4">4 حمامات</option>
+                      <option value="5">+5 حمامات</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Amenities (Multi-select) -->
+              <div class="rec-amenities-wrap">
+                <label class="rec-input-label">
+                  <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--pri);"></i>
+                  <span data-i18n="lbl_amenities">المرافق والخدمات (اختيار متعدد):</span>
+                </label>
+                <div class="rec-amenities-grid" id="rec-amenities-group">
+                  <button type="button" class="rec-amenity-pill" data-amenity="Balcony"><i
+                      class="fa-solid fa-door-open"></i> <span data-i18n="amenity_balcony">شرفة</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Security"><i
+                      class="fa-solid fa-shield-halved"></i> <span data-i18n="amenity_security">أمن 24/7</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Central A/C"><i
+                      class="fa-solid fa-snowflake"></i> <span data-i18n="amenity_ac">تكييف مركزي</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Covered Parking"><i
+                      class="fa-solid fa-square-parking"></i> <span data-i18n="amenity_parking">موقف
+                      مغطى</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Private Pool"><i
+                      class="fa-solid fa-water-ladder"></i> <span data-i18n="amenity_pool">حمام سباحة
+                      خاص</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Shared Gym"><i
+                      class="fa-solid fa-dumbbell"></i> <span data-i18n="amenity_gym">جيم</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Elevator"><i
+                      class="fa-solid fa-elevator"></i> <span data-i18n="amenity_elevator">مصعد</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Private Garden"><i
+                      class="fa-solid fa-tree"></i> <span data-i18n="amenity_garden">حديقة خاصة</span></button>
+                  <button type="button" class="rec-amenity-pill" data-amenity="Kitchen Appliances"><i
+                      class="fa-solid fa-kitchen-set"></i> <span data-i18n="amenity_kitchen">أجهزة مطبخ</span></button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Button -->
+            <div class="rec-submit-wrap">
+              <button type="submit" id="rec-submit-btn" class="rec-action-btn">
+                <i class="fa-solid fa-magnifying-glass rec-search-icon"></i>
+                <span data-i18n="btn_recommend_search">البحث عن أفضل التوصيات</span>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Results Section (نفس تصميم ظهور العقارات عادي خالص) -->
+        <div class="rec-results-section">
+          <div class="rec-results-header">
+            <div class="rec-results-count-wrap">
+              <i class="fa-solid fa-sparkles" style="color:var(--pri)"></i>
+              <span id="rec-results-count" class="rec-results-count">في انتظار البحث — اضغط على زر البحث لعرض أفضل التوصيات</span>
+            </div>
+            <div class="rec-sort-container" id="rec-sort-container">
+              <button type="button" class="rec-sort-btn" id="rec-sort-btn" aria-haspopup="true" aria-expanded="false">
+                <i class="fa-solid fa-arrow-down-wide-short"></i>
+                <span id="rec-sort-current-text" data-i18n="sort_similarity">الأكثر صلة (AI Similarity)</span>
+                <i class="fa-solid fa-chevron-down rec-sort-chevron"></i>
+              </button>
+              <div class="rec-sort-menu" id="rec-sort-menu" role="menu">
+                <button type="button" class="rec-sort-item active" data-sort="similarity">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                  <span data-i18n="sort_similarity">الأكثر صلة (AI Similarity)</span>
+                </button>
+                <button type="button" class="rec-sort-item" data-sort="price_low">
+                  <i class="fa-solid fa-arrow-down-1-9"></i>
+                  <span data-i18n="sort_low">السعر: من الأقل للأعلى</span>
+                </button>
+                <button type="button" class="rec-sort-item" data-sort="price_high">
+                  <i class="fa-solid fa-arrow-up-9-1"></i>
+                  <span data-i18n="sort_high">السعر: من الأعلى للأقل</span>
+                </button>
+              </div>
+              <select id="rec-sort-select" style="display:none;" aria-label="Sort">
+                <option value="similarity">الأكثر صلة</option>
+                <option value="price_low">السعر: من الأقل للأعلى</option>
+                <option value="price_high">السعر: من الأعلى للأقل</option>
+              </select>
+            </div>
+          </div>
+
+          <div id="rec-results-grid" class="grid g3"></div>
+
+          <!-- Empty state if no results -->
+          <div id="rec-empty-state" class="fav-empty-state" style="display:none">
+            <div class="fav-empty-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+            <h3 data-i18n="rec_no_results_t">لم نجد عقارات مطابقة تماماً لهذه الفلاتر</h3>
+            <p data-i18n="rec_no_results_d">جرب توسيع نطاق الميزانية أو اختيار مدينة أخرى للحصول على أفضل التوصيات.</p>
+          </div>
+
+          <!-- Load More Button -->
+          <div class="rec-load-more-wrap" id="rec-load-more-wrap">
+            <button type="button" id="rec-load-more-btn" class="rec-load-more-btn">
+              <i class="fa-solid fa-chevron-down"></i>
+              <span data-i18n="load_more">عرض المزيد (Load More)</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5. PRICE PREDICTION ===== -->
+    <section class="view" id="predict">
+      <div class="wrap pred-page-wrap">
+
+        <!-- Header Row matching Image -->
+        <div class="pred-view-header">
+          <div class="pred-header-right">
+            <div class="pred-header-text">
+              <h1 class="pred-header-title" data-i18n="pred_main_title">تقدير أسعار العقارات</h1>
+              <p class="pred-header-sub" data-i18n="pred_main_sub">تحليل ذكي لسعر العقار في السوق المصري</p>
+            </div>
+          </div>
+          <div class="pred-header-left">
+            <span class="pred-ai-badge">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span data-i18n="pred_ai_badge">مدعوم بالذكاء الاصطناعي</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Two-Column Side-by-Side Predictor Layout -->
+        <div class="pred-dashboard-layout">
+
+          <!-- Right Column (in RTL): Options & Predictor Form -->
+          <div class="pred-sidebar-col">
+            <div class="pred-box-card pred-form-card">
+              <div class="pred-card-heading">
+                <h3 class="pred-title" data-i18n="pred_specs_title">مواصفات العقار</h3>
+                <p class="pred-subtitle" data-i18n="pred_specs_sub">حدد البيانات للحصول على تقدير دقيق</p>
+              </div>
+
+              <!-- 2x2 Category Buttons -->
+              <div class="pred-cats-2x2" id="pred-cat-group">
+                <button type="button" class="pred-cat-tile active" data-cat="buy">
+                  <span data-i18n="cat_buy">سكني - شراء</span>
+                </button>
+                <button type="button" class="pred-cat-tile" data-cat="rent">
+                  <span data-i18n="cat_rent">سكني - إيجار</span>
+                </button>
+                <button type="button" class="pred-cat-tile" data-cat="commercial_buy">
+                  <span data-i18n="cat_comm_buy">تجاري - شراء</span>
+                </button>
+                <button type="button" class="pred-cat-tile" data-cat="commercial_rent">
+                  <span data-i18n="cat_comm_rent">تجاري - إيجار</span>
+                </button>
+              </div>
+
+              <!-- Form Inputs -->
+              <form id="pform" class="pred-inputs-form">
+
+                <!-- Property Type -->
+                <div class="pred-field-group">
+                  <label class="pred-field-label" for="pred-prop-type" data-i18n="lbl_prop_type">نوع العقار</label>
+                  <div class="pred-select-wrap">
+                    <select id="pred-prop-type" class="pred-select" aria-label="نوع العقار">
+                      <!-- Populated dynamically -->
+                    </select>
+                  </div>
+                  <small class="pred-field-hint" data-i18n="hint_prop_type">اختر تصنيف العقار بدقة لتقدير أفضل</small>
+                </div>
+
+                <!-- Location -->
+                <div class="pred-field-group">
+                  <label class="pred-field-label" for="pred-city-select" data-i18n="lbl_loc">الموقع الجغرافي</label>
+                  <div class="pred-select-wrap">
+                    <select id="pred-city-select" class="pred-select" aria-label="الموقع الجغرافي">
+                      <!-- Populated dynamically -->
+                    </select>
+                  </div>
+                  <small class="pred-field-hint" data-i18n="hint_loc">اختر المدينة أو المنطقة في مصر</small>
+                </div>
+
+                <!-- Size -->
+                <div class="pred-field-group">
+                  <label class="pred-field-label" for="pred-size" data-i18n="lbl_size">المساحة (م²)</label>
+                  <div class="pred-select-wrap">
+                    <select id="pred-size" class="pred-select" aria-label="المساحة">
+                      <!-- Populated dynamically -->
+                    </select>
+                  </div>
+                  <small class="pred-field-hint" data-i18n="hint_size">بين 20 و 10,000 م²</small>
+                </div>
+
+                <!-- Bedrooms & Bathrooms Row -->
+                <div class="pred-row-2col">
+                  <!-- Bedrooms -->
+                  <div class="pred-field-group" id="pred-beds-box">
+                    <label class="pred-field-label" for="pred-beds-select" id="pred-beds-label">
+                      <span data-i18n="lbl_beds">عدد غرف النوم</span>
+                    </label>
+                    <div class="pred-select-wrap">
+                      <select id="pred-beds-select" class="pred-select" aria-label="عدد غرف النوم">
+                        <!-- Populated dynamically -->
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Bathrooms -->
+                  <div class="pred-field-group" id="pred-baths-box">
+                    <label class="pred-field-label" for="pred-baths-select" id="pred-baths-label">
+                      <span data-i18n="lbl_baths">عدد الحمامات</span>
+                    </label>
+                    <div class="pred-select-wrap">
+                      <select id="pred-baths-select" class="pred-select" aria-label="عدد الحمامات">
+                        <!-- Populated dynamically -->
+                      </select>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Action Buttons Group (Calculate + Calculate Another) -->
+                <div class="pred-submit-wrap" style="display: flex !important; flex-direction: column !important; gap: 10px !important; align-items: stretch !important; width: 100% !important; margin-top: 12px !important;">
+                  <button type="submit" id="pred-submit-btn" class="pred-gold-btn" style="width: 100% !important; flex: none !important; box-sizing: border-box !important;"
+                    title="حساب السعر المتوقع بواسطة الذكاء الاصطناعي">
+                    <span class="pred-btn-spinner" style="display:none;"><i
+                        class="fa-solid fa-circle-notch fa-spin"></i></span>
+                    <span class="pred-btn-text" data-i18n="btn_calc_price">احسب السعر المتوقع</span>
+                  </button>
+                  <button type="button" id="pred-reset-btn" class="pred-secondary-btn" style="width: 100% !important; flex: none !important; box-sizing: border-box !important;"
+                    title="تصفية النتائج والبدء من جديد">
+                    <i class="fa-solid fa-arrow-rotate-left"></i>
+                    <span data-i18n="btn_calc_another">احسب سعر عقار آخر</span>
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+          <!-- Left Column (in RTL): Dashboard & Analytics -->
+          <div class="pred-content-col">
+
+            <!-- Initial Awaiting Input State (Engaging & Informative Placeholder) -->
+            <div id="pred-placeholder" class="pred-box-card pred-placeholder-card">
+              <div class="pred-placeholder-inner">
+                <div class="pred-placeholder-icon">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <h3 class="pred-placeholder-title" data-i18n="pred_awaiting_title">في انتظار إدخال البيانات</h3>
+                <p class="pred-placeholder-desc" data-i18n="pred_awaiting_desc">
+                  حدد مواصفات العقار في النموذج الجانبي، ثم اضغط على زر <strong>«احسب السعر المتوقع»</strong> لبدء
+                  التحليل الفوري بالذكاء الاصطناعي وعرض التقييم المالي وتأثير العوامل.
+                </p>
+                <div class="pred-placeholder-features">
+                  <span class="pred-ph-chip"><i class="fa-solid fa-bolt" style="color: #e59b20;"></i> <span
+                      data-i18n="ph_chip_instant">تسعير ذكي فوري</span></span>
+                  <span class="pred-ph-chip"><i class="fa-solid fa-chart-column" style="color: #e59b20;"></i> <span
+                      data-i18n="ph_chip_shap">تحليل تفصيلي SHAP</span></span>
+                  <span class="pred-ph-chip"><i class="fa-solid fa-cubes" style="color: #e59b20;"></i> <span
+                      data-i18n="ph_chip_sim">مقارنة بأكثر من 62 ألف عقار</span></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dynamic Results Wrap (Hidden until user calculates) -->
+            <div id="pred-results-wrap" class="pred-results-wrap" style="display:none;">
+
+              <!-- Card 1: Top Metrics Banner (Compact & Balanced) -->
+              <div class="pred-box-card pred-top-metric-card">
+                <div class="pred-metrics-row">
+
+                  <!-- 1. Estimated Price Main (Right in RTL) -->
+                  <div class="pred-main-price-block">
+                    <div class="pred-main-price-head">
+                      <span class="pred-price-label" data-i18n="stat_pred_price">السعر المتوقع</span>
+                      <span class="pred-conf-badge" id="pred-conf-badge">
+                        <span class="pred-conf-dot"></span>
+                        <span id="pred-conf-text">ثقة مرتفعة • %90</span>
+                      </span>
+                    </div>
+                    <div class="pred-price-value-row">
+                      <h2 class="pred-price-num" id="pred-display-price">8,825,000</h2>
+                      <span class="pred-curr-label" id="pred-curr-tag">جنيه</span>
+                    </div>
+                    <!-- Range Slider Bar -->
+                    <div class="pred-range-track-wrap">
+                      <div class="pred-range-labels">
+                        <span id="pred-range-min">8.1M</span>
+                        <span class="pred-range-title" data-i18n="lbl_likely_range">النطاق المحتمل</span>
+                        <span id="pred-range-max">9.5M</span>
+                      </div>
+                      <div class="pred-range-bar">
+                        <div class="pred-range-fill" id="pred-range-fill"></div>
+                        <div class="pred-range-thumb" id="pred-range-thumb"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Divider -->
+                  <div class="pred-metrics-divider"></div>
+
+                  <!-- 2. Meter Price Card (Middle in RTL) -->
+                  <div class="pred-stat-card">
+                    <span class="pred-stat-lbl" data-i18n="stat_meter_price">سعر المتر</span>
+                    <strong class="pred-stat-val" id="pred-stat-m2">67,885</strong>
+                  </div>
+
+                  <!-- 3. Area Comparison Card (Far Left in RTL) -->
+                  <div class="pred-stat-card">
+                    <span class="pred-stat-lbl" data-i18n="stat_area_comp">مقارنة بالمنطقة</span>
+                    <strong class="pred-stat-val pred-stat-green" id="pred-stat-comp">+6%</strong>
+                  </div>
+
+                </div>
+              </div>
+
+              <!-- Middle Row: Two Charts Cards -->
+              <div class="pred-charts-grid">
+
+                <!-- Left Card in RTL: Feature Importance -->
+                <div class="pred-box-card pred-chart-card">
+                  <h3 class="pred-section-t" data-i18n="title_feat_imp">أهمية العوامل</h3>
+                  <div class="pred-feat-bars" id="pred-feat-bars">
+                    <!-- Populated dynamically -->
+                  </div>
+                </div>
+
+                <!-- Right Card in RTL: SHAP Waterfall -->
+                <div class="pred-box-card pred-chart-card">
+                  <div class="pred-card-header-flex">
+                    <h3 class="pred-section-t" data-i18n="title_shap">تأثير العوامل على السعر (SHAP)</h3>
+                    <span class="pred-unit-sub" data-i18n="unit_egp">جنيه مصري</span>
+                  </div>
+                  <div class="pred-shap-container" id="pred-shap-container">
+                    <!-- Dynamic SHAP waterfall bars -->
+                  </div>
+                  <div class="pred-shap-axis" id="pred-shap-axis">
+                    <!-- Axis values: 3.0M, 3.5M, 4.0M, etc. -->
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- Bottom Row: Similar Properties (Clean Full-Width Card) -->
+              <div class="pred-box-card pred-similar-full-card">
+                <div class="pred-subcard-header">
+                  <div class="pred-sim-title-wrap">
+                    <i class="fa-solid fa-layer-group" style="color: #e59b20; font-size: 1.1rem;"></i>
+                    <h4 class="pred-subcard-t" data-i18n="card_similar_props">عقارات مشابهة في نفس النطاق السعري</h4>
+                  </div>
+                  <button type="button" class="pred-sim-more-btn" id="pred-explore-similar-btn"
+                    title="عرض في كتالوج التوصيات">
+                    <span data-i18n="lbl_view_all_rec">عرض كل المقترحات في التوصيات</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                  </button>
+                </div>
+                <div class="pred-sim-grid-3col" id="pred-sim-list">
+                  <!-- 3 dynamic property cards -->
+                </div>
+              </div>
+
+            </div> <!-- /#pred-results-wrap -->
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== 6. AI CHAT ===== -->
+    <section class="view" id="chat">
+      <div class="chat-app-wrapper">
+        <div class="chat-app-layout">
+
+          <!-- Main Chat Area (Left/Center Canvas) -->
+          <div class="chat-main-area">
+
+            <!-- Chat Top Header -->
+            <div class="chat-top-header">
+              <div class="chat-brand-meta">
+                <div class="egy-avatar-badge">EGY</div>
+                <div class="chat-brand-info">
+                  <h2 class="chat-title" data-i18n="chat_title">المستشار العقاري الذكي</h2>
+                  <p class="chat-subtitle" data-i18n="chat_subtitle">مدعوم بـ Gemini 3.1 ومزود ببيانات السوق الحقيقية
+                  </p>
+                </div>
+              </div>
+
+              <!-- New Chat Action Button -->
+              <button type="button" class="chat-drawer-toggle-btn" id="chat-new-btn" title="محادثة جديدة" onclick="if(window.startNewChat) startNewChat();">
+                <i class="fa-solid fa-plus"></i>
+                <span data-i18n="chat_new_chat_btn">محادثة جديدة</span>
+              </button>
+            </div>
+
+            <!-- Conversation Stream Area -->
+            <div class="chat-conv-stream">
+              <div class="chat-msgs-list" id="msgs">
+                <!-- Messages populated dynamically via JS -->
+              </div>
+
+              <!-- Floating Rounded Pill Input Bar (Matching Exact Design) -->
+              <form class="chat-floating-input-bar" id="cform" action="javascript:void(0);"
+                onsubmit="if(window.handleChatSubmit) handleChatSubmit(event); return false;">
+                <button type="button" class="chat-pill-plus-btn" id="chat-plus-btn" title="خيارات إضافية">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+                <input id="ci" placeholder="اسأل عن أي تفاصيل..." aria-label="Message" data-i18n-ph="chat_ph"
+                  data-i18n-ph="chat_input_ph" autocomplete="off">
+                <button type="button" class="chat-pill-send-btn" id="chat-send-btn" aria-label="Send"
+                  onclick="if(window.handleChatSubmit) handleChatSubmit(event);">
+                  <i class="fa-solid fa-arrow-up"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="foot">
+    <div class="wrap foot-wrap">
+      <div class="foot-grid">
+        <!-- Col 1: Brand & Overview -->
+        <div class="foot-col foot-brand-col">
+          <a href="#home" class="brand foot-logo" aria-label="EGY Development">
+            <div class="brand-box">
+              <img src="assets/logo/logo-light.png" alt="EGY" class="logo-img logo-light">
+              <img src="assets/logo/logo-dark.png" alt="EGY" class="logo-img logo-dark">
+              <span class="brand-sub">DEVELOPMENT</span>
+            </div>
+          </a>
+          <p class="foot-desc" data-i18n="foot_desc">Next-generation AI real estate platform in Egypt. Smart property
+            recommendations, machine learning valuation, and conversational search.</p>
+          <div class="foot-socials">
+            <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="soc-btn"><i
+                class="fa-brands fa-linkedin-in"></i></a>
+            <a href="https://github.com" target="_blank" rel="noopener" aria-label="GitHub" class="soc-btn"><i
+                class="fa-brands fa-github"></i></a>
+            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" class="soc-btn"><i
+                class="fa-brands fa-facebook-f"></i></a>
+            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" class="soc-btn"><i
+                class="fa-brands fa-instagram"></i></a>
+            <a href="https://whatsapp.com" target="_blank" rel="noopener" aria-label="WhatsApp" class="soc-btn"><i
+                class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="foot-col">
+          <h4 class="foot-title" data-i18n="foot_quick">Quick Links</h4>
+          <ul class="foot-links">
+            <li><a href="#home"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav_home">Home</span></a></li>
+            <li><a href="#properties"><i class="fa-solid fa-angle-right"></i> <span
+                  data-i18n="nav_props">Properties</span></a></li>
+            <li><a href="#recommend"><i class="fa-solid fa-angle-right"></i> <span
+                  data-i18n="nav_rec">Recommendations</span></a></li>
+            <li><a href="#predict"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav_pred">Price
+                  Prediction</span></a></li>
+            <li><a href="#chat"><i class="fa-solid fa-angle-right"></i> <span data-i18n="nav_chat">AI
+                  Assistant</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Popular Areas -->
+        <div class="foot-col">
+          <h4 class="foot-title" data-i18n="foot_locs">Top Areas</h4>
+          <ul class="foot-links">
+            <li><a href="#properties"><i class="fa-solid fa-location-dot"></i> <span data-i18n="opt_newcairo">New
+                  Cairo</span></a></li>
+            <li><a href="#properties"><i class="fa-solid fa-location-dot"></i> <span data-i18n="opt_zayed">Sheikh
+                  Zayed</span></a></li>
+            <li><a href="#properties"><i class="fa-solid fa-location-dot"></i> <span data-i18n="loc_october">6th of
+                  October</span></a></li>
+            <li><a href="#properties"><i class="fa-solid fa-location-dot"></i> <span data-i18n="opt_ncoast">North
+                  Coast</span></a></li>
+            <li><a href="#properties"><i class="fa-solid fa-location-dot"></i> <span
+                  data-i18n="opt_maadi">Maadi</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contact & Info -->
+        <div class="foot-col">
+          <h4 class="foot-title" data-i18n="foot_contact">Contact Us</h4>
+          <ul class="foot-contact">
+            <li>
+              <div class="cnt-ic"><i class="fa-solid fa-location-dot"></i></div>
+              <div>
+                <span class="cnt-lbl" data-i18n="lbl_location">Location</span>
+                <span class="cnt-val" data-i18n="foot_city">Cairo, Egypt</span>
+              </div>
+            </li>
+            <li>
+              <div class="cnt-ic"><i class="fa-solid fa-envelope"></i></div>
+              <div>
+                <span class="cnt-lbl" data-i18n="lbl_email">Email</span>
+                <a href="mailto:hello@egydevelopment.example" class="cnt-val">hello@egydevelopment.example</a>
+              </div>
+            </li>
+            <li>
+              <div class="cnt-ic"><i class="fa-solid fa-phone"></i></div>
+              <div>
+                <span class="cnt-lbl" data-i18n="lbl_phone">Phone</span>
+                <span class="cnt-val" dir="ltr">+20 2 1234 5678</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="foot-bottom">
+        <p class="foot-copy" data-i18n="foot_rights">© 2026 EGY DEVELOPMENT. All rights reserved.</p>
+        <div class="foot-legal">
+          <a href="#home" data-i18n="foot_privacy">Privacy Policy</a>
+          <span>•</span>
+          <a href="#home" data-i18n="foot_terms">Terms of Service</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js?v=5.4"></script>
+</body>
+
+</html>
